@@ -1,0 +1,3 @@
+INT maria
+INT gui
+IF (2==2) {gui = 7}
