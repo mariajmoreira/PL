@@ -1,0 +1,12 @@
+INT a
+INT b
+INT c
+INT d
+INT res
+a=2
+b=2
+c=2
+d=2
+def_QUAD(a,b,c,d){ IF( (a==b)E(a==c)E(a==d) ) {PRINT( "quadrado valido\n")} ELSE{ PRINT("quadrado invalido\n")} }
+
+

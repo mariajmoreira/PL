@@ -1,0 +1,2902 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    STRING
+
+Grammar
+
+Rule 0     S' -> Comandos
+Rule 1     Comandos -> Comando
+Rule 2     Comandos -> Comandos Comando
+Rule 3     Comando -> ExprR
+Rule 4     Comando -> Declaracao
+Rule 5     Comando -> Atribuicao
+Rule 6     Comando -> Atribuicao NEWLINE
+Rule 7     Comando -> IFELSE
+Rule 8     Comando -> ONLYIF
+Rule 9     Comando -> FORDO
+Rule 10    Comando -> FUNC
+Rule 11    Comando -> PRINTER
+Rule 12    Comando -> SCANNER
+Rule 13    Factor -> num
+Rule 14    Factor -> - num
+Rule 15    Factor -> id
+Rule 16    Factor -> TRUE
+Rule 17    Factor -> FALSE
+Rule 18    Factor -> ( ExprR )
+Rule 19    ExprR -> Expr < Expr
+Rule 20    ExprR -> Expr > Expr
+Rule 21    ExprR -> Expr < = Expr
+Rule 22    ExprR -> Expr > = Expr
+Rule 23    ExprR -> Expr EQUALS Expr
+Rule 24    ExprR -> Expr NOTEQUALS Expr
+Rule 25    Termo -> Termo E Factor
+Rule 26    Expr -> Expr OU Termo
+Rule 27    ExprR -> Expr
+Rule 28    Expr -> Termo
+Rule 29    Expr -> Expr + Termo
+Rule 30    Expr -> Expr - Termo
+Rule 31    Expr -> Termo * Factor
+Rule 32    Expr -> Termo / Factor
+Rule 33    Termo -> Factor
+Rule 34    Declaracao -> INT id
+Rule 35    Atribuicao -> id = ExprR
+Rule 36    Atribuicoes -> Atribuicao
+Rule 37    Atribuicoes -> Atribuicao NEWLINE
+Rule 38    Atribuicoes -> Atribuicoes Atribuicao
+Rule 39    Atribuicoes -> Atribuicoes NEWLINE Atribuicao
+Rule 40    Atribuicoes -> IFELSE
+Rule 41    Atribuicao -> ONLYIF
+Rule 42    Atribuicao -> FORDO
+Rule 43    Atribuicao -> PRINTER
+Rule 44    Atribuicao -> SCANNER
+Rule 45    IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+Rule 46    ONLYIF -> IF ( ExprR ) { Atribuicoes }
+Rule 47    FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+Rule 48    ARGS -> ARG
+Rule 49    ARG -> <empty>
+Rule 50    ARG -> id
+Rule 51    ARGS -> ARGS , ARG
+Rule 52    FUNC -> NOME ( ARGS ) { Atribuicoes }
+Rule 53    FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE }
+Rule 54    TEXTO -> TEXT
+Rule 55    PRINTER -> PRINT ( TEXTO )
+Rule 56    PRINTER -> PRINT ( id )
+Rule 57    SCANNER -> SCAN ( id )
+
+Terminals, with rules where they appear
+
+(                    : 18 45 46 47 52 53 55 56 57
+)                    : 18 45 46 47 52 53 55 56 57
+*                    : 31
++                    : 29
+,                    : 47 51
+-                    : 14 30
+/                    : 32
+<                    : 19 21
+=                    : 21 22 35
+>                    : 20 22
+DO                   : 47
+E                    : 25
+ELSE                 : 45
+EQUALS               : 23
+FALSE                : 17
+FOR                  : 47
+IF                   : 45 46
+INT                  : 34
+NEWLINE              : 6 37 39 53 53
+NOME                 : 52 53
+NOTEQUALS            : 24
+OU                   : 26
+PRINT                : 55 56
+SCAN                 : 57
+STRING               : 
+TEXT                 : 54
+TRUE                 : 16
+error                : 
+id                   : 15 34 35 50 56 57
+num                  : 13 14
+{                    : 45 45 46 47 52 53
+}                    : 45 45 46 47 52 53
+
+Nonterminals, with rules where they appear
+
+ARG                  : 48 51
+ARGS                 : 51 52 53
+Atribuicao           : 5 6 36 37 38 39 47
+Atribuicoes          : 38 39 45 45 46 47 52 53
+Comando              : 1 2
+Comandos             : 2 0
+Declaracao           : 4
+Expr                 : 19 19 20 20 21 21 22 22 23 23 24 24 26 27 29 30
+ExprR                : 3 18 35 45 46 47
+FORDO                : 9 42
+FUNC                 : 10
+Factor               : 25 31 32 33
+IFELSE               : 7 40
+ONLYIF               : 8 41
+PRINTER              : 11 43
+SCANNER              : 12 44
+TEXTO                : 55
+Termo                : 25 26 28 29 30 31 32
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Comandos
+    (1) Comandos -> . Comando
+    (2) Comandos -> . Comandos Comando
+    (3) Comando -> . ExprR
+    (4) Comando -> . Declaracao
+    (5) Comando -> . Atribuicao
+    (6) Comando -> . Atribuicao NEWLINE
+    (7) Comando -> . IFELSE
+    (8) Comando -> . ONLYIF
+    (9) Comando -> . FORDO
+    (10) Comando -> . FUNC
+    (11) Comando -> . PRINTER
+    (12) Comando -> . SCANNER
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (34) Declaracao -> . INT id
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (52) FUNC -> . NOME ( ARGS ) { Atribuicoes }
+    (53) FUNC -> . NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    INT             shift and go to state 13
+    id              shift and go to state 14
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    NOME            shift and go to state 18
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+    num             shift and go to state 24
+    -               shift and go to state 22
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Comandos                       shift and go to state 1
+    Comando                        shift and go to state 2
+    ExprR                          shift and go to state 3
+    Declaracao                     shift and go to state 4
+    Atribuicao                     shift and go to state 5
+    IFELSE                         shift and go to state 6
+    ONLYIF                         shift and go to state 7
+    FORDO                          shift and go to state 8
+    FUNC                           shift and go to state 9
+    PRINTER                        shift and go to state 10
+    SCANNER                        shift and go to state 11
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 1
+
+    (0) S' -> Comandos .
+    (2) Comandos -> Comandos . Comando
+    (3) Comando -> . ExprR
+    (4) Comando -> . Declaracao
+    (5) Comando -> . Atribuicao
+    (6) Comando -> . Atribuicao NEWLINE
+    (7) Comando -> . IFELSE
+    (8) Comando -> . ONLYIF
+    (9) Comando -> . FORDO
+    (10) Comando -> . FUNC
+    (11) Comando -> . PRINTER
+    (12) Comando -> . SCANNER
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (34) Declaracao -> . INT id
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (52) FUNC -> . NOME ( ARGS ) { Atribuicoes }
+    (53) FUNC -> . NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    INT             shift and go to state 13
+    id              shift and go to state 14
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    NOME            shift and go to state 18
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+    num             shift and go to state 24
+    -               shift and go to state 22
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Comando                        shift and go to state 27
+    ExprR                          shift and go to state 3
+    Declaracao                     shift and go to state 4
+    Atribuicao                     shift and go to state 5
+    IFELSE                         shift and go to state 6
+    ONLYIF                         shift and go to state 7
+    FORDO                          shift and go to state 8
+    FUNC                           shift and go to state 9
+    PRINTER                        shift and go to state 10
+    SCANNER                        shift and go to state 11
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 2
+
+    (1) Comandos -> Comando .
+
+    INT             reduce using rule 1 (Comandos -> Comando .)
+    id              reduce using rule 1 (Comandos -> Comando .)
+    IF              reduce using rule 1 (Comandos -> Comando .)
+    FOR             reduce using rule 1 (Comandos -> Comando .)
+    NOME            reduce using rule 1 (Comandos -> Comando .)
+    PRINT           reduce using rule 1 (Comandos -> Comando .)
+    SCAN            reduce using rule 1 (Comandos -> Comando .)
+    num             reduce using rule 1 (Comandos -> Comando .)
+    -               reduce using rule 1 (Comandos -> Comando .)
+    TRUE            reduce using rule 1 (Comandos -> Comando .)
+    FALSE           reduce using rule 1 (Comandos -> Comando .)
+    (               reduce using rule 1 (Comandos -> Comando .)
+    $end            reduce using rule 1 (Comandos -> Comando .)
+
+
+state 3
+
+    (3) Comando -> ExprR .
+
+    INT             reduce using rule 3 (Comando -> ExprR .)
+    id              reduce using rule 3 (Comando -> ExprR .)
+    IF              reduce using rule 3 (Comando -> ExprR .)
+    FOR             reduce using rule 3 (Comando -> ExprR .)
+    NOME            reduce using rule 3 (Comando -> ExprR .)
+    PRINT           reduce using rule 3 (Comando -> ExprR .)
+    SCAN            reduce using rule 3 (Comando -> ExprR .)
+    num             reduce using rule 3 (Comando -> ExprR .)
+    -               reduce using rule 3 (Comando -> ExprR .)
+    TRUE            reduce using rule 3 (Comando -> ExprR .)
+    FALSE           reduce using rule 3 (Comando -> ExprR .)
+    (               reduce using rule 3 (Comando -> ExprR .)
+    $end            reduce using rule 3 (Comando -> ExprR .)
+
+
+state 4
+
+    (4) Comando -> Declaracao .
+
+    INT             reduce using rule 4 (Comando -> Declaracao .)
+    id              reduce using rule 4 (Comando -> Declaracao .)
+    IF              reduce using rule 4 (Comando -> Declaracao .)
+    FOR             reduce using rule 4 (Comando -> Declaracao .)
+    NOME            reduce using rule 4 (Comando -> Declaracao .)
+    PRINT           reduce using rule 4 (Comando -> Declaracao .)
+    SCAN            reduce using rule 4 (Comando -> Declaracao .)
+    num             reduce using rule 4 (Comando -> Declaracao .)
+    -               reduce using rule 4 (Comando -> Declaracao .)
+    TRUE            reduce using rule 4 (Comando -> Declaracao .)
+    FALSE           reduce using rule 4 (Comando -> Declaracao .)
+    (               reduce using rule 4 (Comando -> Declaracao .)
+    $end            reduce using rule 4 (Comando -> Declaracao .)
+
+
+state 5
+
+    (5) Comando -> Atribuicao .
+    (6) Comando -> Atribuicao . NEWLINE
+
+    INT             reduce using rule 5 (Comando -> Atribuicao .)
+    id              reduce using rule 5 (Comando -> Atribuicao .)
+    IF              reduce using rule 5 (Comando -> Atribuicao .)
+    FOR             reduce using rule 5 (Comando -> Atribuicao .)
+    NOME            reduce using rule 5 (Comando -> Atribuicao .)
+    PRINT           reduce using rule 5 (Comando -> Atribuicao .)
+    SCAN            reduce using rule 5 (Comando -> Atribuicao .)
+    num             reduce using rule 5 (Comando -> Atribuicao .)
+    -               reduce using rule 5 (Comando -> Atribuicao .)
+    TRUE            reduce using rule 5 (Comando -> Atribuicao .)
+    FALSE           reduce using rule 5 (Comando -> Atribuicao .)
+    (               reduce using rule 5 (Comando -> Atribuicao .)
+    $end            reduce using rule 5 (Comando -> Atribuicao .)
+    NEWLINE         shift and go to state 28
+
+
+state 6
+
+    (7) Comando -> IFELSE .
+
+    INT             reduce using rule 7 (Comando -> IFELSE .)
+    id              reduce using rule 7 (Comando -> IFELSE .)
+    IF              reduce using rule 7 (Comando -> IFELSE .)
+    FOR             reduce using rule 7 (Comando -> IFELSE .)
+    NOME            reduce using rule 7 (Comando -> IFELSE .)
+    PRINT           reduce using rule 7 (Comando -> IFELSE .)
+    SCAN            reduce using rule 7 (Comando -> IFELSE .)
+    num             reduce using rule 7 (Comando -> IFELSE .)
+    -               reduce using rule 7 (Comando -> IFELSE .)
+    TRUE            reduce using rule 7 (Comando -> IFELSE .)
+    FALSE           reduce using rule 7 (Comando -> IFELSE .)
+    (               reduce using rule 7 (Comando -> IFELSE .)
+    $end            reduce using rule 7 (Comando -> IFELSE .)
+
+
+state 7
+
+    (8) Comando -> ONLYIF .
+    (41) Atribuicao -> ONLYIF .
+
+  ! reduce/reduce conflict for INT resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for id resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for IF resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for FOR resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for NOME resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for SCAN resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for num resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for - resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for ( resolved using rule 8 (Comando -> ONLYIF .)
+  ! reduce/reduce conflict for $end resolved using rule 8 (Comando -> ONLYIF .)
+    INT             reduce using rule 8 (Comando -> ONLYIF .)
+    id              reduce using rule 8 (Comando -> ONLYIF .)
+    IF              reduce using rule 8 (Comando -> ONLYIF .)
+    FOR             reduce using rule 8 (Comando -> ONLYIF .)
+    NOME            reduce using rule 8 (Comando -> ONLYIF .)
+    PRINT           reduce using rule 8 (Comando -> ONLYIF .)
+    SCAN            reduce using rule 8 (Comando -> ONLYIF .)
+    num             reduce using rule 8 (Comando -> ONLYIF .)
+    -               reduce using rule 8 (Comando -> ONLYIF .)
+    TRUE            reduce using rule 8 (Comando -> ONLYIF .)
+    FALSE           reduce using rule 8 (Comando -> ONLYIF .)
+    (               reduce using rule 8 (Comando -> ONLYIF .)
+    $end            reduce using rule 8 (Comando -> ONLYIF .)
+    NEWLINE         reduce using rule 41 (Atribuicao -> ONLYIF .)
+
+  ! INT             [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! id              [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! IF              [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! FOR             [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! NOME            [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! PRINT           [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! SCAN            [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! num             [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! -               [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! TRUE            [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! FALSE           [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! (               [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+  ! $end            [ reduce using rule 41 (Atribuicao -> ONLYIF .) ]
+
+
+state 8
+
+    (9) Comando -> FORDO .
+    (42) Atribuicao -> FORDO .
+
+  ! reduce/reduce conflict for INT resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for id resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for IF resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for FOR resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for NOME resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for PRINT resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for SCAN resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for num resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for - resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for TRUE resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for FALSE resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for ( resolved using rule 9 (Comando -> FORDO .)
+  ! reduce/reduce conflict for $end resolved using rule 9 (Comando -> FORDO .)
+    INT             reduce using rule 9 (Comando -> FORDO .)
+    id              reduce using rule 9 (Comando -> FORDO .)
+    IF              reduce using rule 9 (Comando -> FORDO .)
+    FOR             reduce using rule 9 (Comando -> FORDO .)
+    NOME            reduce using rule 9 (Comando -> FORDO .)
+    PRINT           reduce using rule 9 (Comando -> FORDO .)
+    SCAN            reduce using rule 9 (Comando -> FORDO .)
+    num             reduce using rule 9 (Comando -> FORDO .)
+    -               reduce using rule 9 (Comando -> FORDO .)
+    TRUE            reduce using rule 9 (Comando -> FORDO .)
+    FALSE           reduce using rule 9 (Comando -> FORDO .)
+    (               reduce using rule 9 (Comando -> FORDO .)
+    $end            reduce using rule 9 (Comando -> FORDO .)
+    NEWLINE         reduce using rule 42 (Atribuicao -> FORDO .)
+
+  ! INT             [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! id              [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! IF              [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! FOR             [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! NOME            [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! PRINT           [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! SCAN            [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! num             [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! -               [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! TRUE            [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! FALSE           [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! (               [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+  ! $end            [ reduce using rule 42 (Atribuicao -> FORDO .) ]
+
+
+state 9
+
+    (10) Comando -> FUNC .
+
+    INT             reduce using rule 10 (Comando -> FUNC .)
+    id              reduce using rule 10 (Comando -> FUNC .)
+    IF              reduce using rule 10 (Comando -> FUNC .)
+    FOR             reduce using rule 10 (Comando -> FUNC .)
+    NOME            reduce using rule 10 (Comando -> FUNC .)
+    PRINT           reduce using rule 10 (Comando -> FUNC .)
+    SCAN            reduce using rule 10 (Comando -> FUNC .)
+    num             reduce using rule 10 (Comando -> FUNC .)
+    -               reduce using rule 10 (Comando -> FUNC .)
+    TRUE            reduce using rule 10 (Comando -> FUNC .)
+    FALSE           reduce using rule 10 (Comando -> FUNC .)
+    (               reduce using rule 10 (Comando -> FUNC .)
+    $end            reduce using rule 10 (Comando -> FUNC .)
+
+
+state 10
+
+    (11) Comando -> PRINTER .
+    (43) Atribuicao -> PRINTER .
+
+  ! reduce/reduce conflict for INT resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for id resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for IF resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for FOR resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for NOME resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for PRINT resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for SCAN resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for num resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for - resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for TRUE resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for FALSE resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for ( resolved using rule 11 (Comando -> PRINTER .)
+  ! reduce/reduce conflict for $end resolved using rule 11 (Comando -> PRINTER .)
+    INT             reduce using rule 11 (Comando -> PRINTER .)
+    id              reduce using rule 11 (Comando -> PRINTER .)
+    IF              reduce using rule 11 (Comando -> PRINTER .)
+    FOR             reduce using rule 11 (Comando -> PRINTER .)
+    NOME            reduce using rule 11 (Comando -> PRINTER .)
+    PRINT           reduce using rule 11 (Comando -> PRINTER .)
+    SCAN            reduce using rule 11 (Comando -> PRINTER .)
+    num             reduce using rule 11 (Comando -> PRINTER .)
+    -               reduce using rule 11 (Comando -> PRINTER .)
+    TRUE            reduce using rule 11 (Comando -> PRINTER .)
+    FALSE           reduce using rule 11 (Comando -> PRINTER .)
+    (               reduce using rule 11 (Comando -> PRINTER .)
+    $end            reduce using rule 11 (Comando -> PRINTER .)
+    NEWLINE         reduce using rule 43 (Atribuicao -> PRINTER .)
+
+  ! INT             [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! id              [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! IF              [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! FOR             [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! NOME            [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! PRINT           [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! SCAN            [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! num             [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! -               [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! TRUE            [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! FALSE           [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! (               [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+  ! $end            [ reduce using rule 43 (Atribuicao -> PRINTER .) ]
+
+
+state 11
+
+    (12) Comando -> SCANNER .
+    (44) Atribuicao -> SCANNER .
+
+  ! reduce/reduce conflict for INT resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for id resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for IF resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for FOR resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for NOME resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for PRINT resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for SCAN resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for num resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for - resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for TRUE resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for FALSE resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for ( resolved using rule 12 (Comando -> SCANNER .)
+  ! reduce/reduce conflict for $end resolved using rule 12 (Comando -> SCANNER .)
+    INT             reduce using rule 12 (Comando -> SCANNER .)
+    id              reduce using rule 12 (Comando -> SCANNER .)
+    IF              reduce using rule 12 (Comando -> SCANNER .)
+    FOR             reduce using rule 12 (Comando -> SCANNER .)
+    NOME            reduce using rule 12 (Comando -> SCANNER .)
+    PRINT           reduce using rule 12 (Comando -> SCANNER .)
+    SCAN            reduce using rule 12 (Comando -> SCANNER .)
+    num             reduce using rule 12 (Comando -> SCANNER .)
+    -               reduce using rule 12 (Comando -> SCANNER .)
+    TRUE            reduce using rule 12 (Comando -> SCANNER .)
+    FALSE           reduce using rule 12 (Comando -> SCANNER .)
+    (               reduce using rule 12 (Comando -> SCANNER .)
+    $end            reduce using rule 12 (Comando -> SCANNER .)
+    NEWLINE         reduce using rule 44 (Atribuicao -> SCANNER .)
+
+  ! INT             [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! id              [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! IF              [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! FOR             [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! NOME            [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! PRINT           [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! SCAN            [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! num             [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! -               [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! TRUE            [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! FALSE           [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! (               [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+  ! $end            [ reduce using rule 44 (Atribuicao -> SCANNER .) ]
+
+
+state 12
+
+    (19) ExprR -> Expr . < Expr
+    (20) ExprR -> Expr . > Expr
+    (21) ExprR -> Expr . < = Expr
+    (22) ExprR -> Expr . > = Expr
+    (23) ExprR -> Expr . EQUALS Expr
+    (24) ExprR -> Expr . NOTEQUALS Expr
+    (27) ExprR -> Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    <               shift and go to state 29
+    >               shift and go to state 30
+    EQUALS          shift and go to state 31
+    NOTEQUALS       shift and go to state 32
+    INT             reduce using rule 27 (ExprR -> Expr .)
+    id              reduce using rule 27 (ExprR -> Expr .)
+    IF              reduce using rule 27 (ExprR -> Expr .)
+    FOR             reduce using rule 27 (ExprR -> Expr .)
+    NOME            reduce using rule 27 (ExprR -> Expr .)
+    PRINT           reduce using rule 27 (ExprR -> Expr .)
+    SCAN            reduce using rule 27 (ExprR -> Expr .)
+    num             reduce using rule 27 (ExprR -> Expr .)
+    TRUE            reduce using rule 27 (ExprR -> Expr .)
+    FALSE           reduce using rule 27 (ExprR -> Expr .)
+    (               reduce using rule 27 (ExprR -> Expr .)
+    $end            reduce using rule 27 (ExprR -> Expr .)
+    )               reduce using rule 27 (ExprR -> Expr .)
+    NEWLINE         reduce using rule 27 (ExprR -> Expr .)
+    ,               reduce using rule 27 (ExprR -> Expr .)
+    }               reduce using rule 27 (ExprR -> Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 27 (ExprR -> Expr .) ]
+
+
+state 13
+
+    (34) Declaracao -> INT . id
+
+    id              shift and go to state 36
+
+
+state 14
+
+    (35) Atribuicao -> id . = ExprR
+    (15) Factor -> id .
+
+    =               shift and go to state 37
+    *               reduce using rule 15 (Factor -> id .)
+    /               reduce using rule 15 (Factor -> id .)
+    E               reduce using rule 15 (Factor -> id .)
+    <               reduce using rule 15 (Factor -> id .)
+    >               reduce using rule 15 (Factor -> id .)
+    EQUALS          reduce using rule 15 (Factor -> id .)
+    NOTEQUALS       reduce using rule 15 (Factor -> id .)
+    OU              reduce using rule 15 (Factor -> id .)
+    +               reduce using rule 15 (Factor -> id .)
+    -               reduce using rule 15 (Factor -> id .)
+    INT             reduce using rule 15 (Factor -> id .)
+    id              reduce using rule 15 (Factor -> id .)
+    IF              reduce using rule 15 (Factor -> id .)
+    FOR             reduce using rule 15 (Factor -> id .)
+    NOME            reduce using rule 15 (Factor -> id .)
+    PRINT           reduce using rule 15 (Factor -> id .)
+    SCAN            reduce using rule 15 (Factor -> id .)
+    num             reduce using rule 15 (Factor -> id .)
+    TRUE            reduce using rule 15 (Factor -> id .)
+    FALSE           reduce using rule 15 (Factor -> id .)
+    (               reduce using rule 15 (Factor -> id .)
+    $end            reduce using rule 15 (Factor -> id .)
+
+
+state 15
+
+    (45) IFELSE -> IF . ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF . ( ExprR ) { Atribuicoes }
+
+    (               shift and go to state 38
+
+
+state 16
+
+    (18) Factor -> ( . ExprR )
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    ExprR                          shift and go to state 39
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 17
+
+    (47) FORDO -> FOR . ( Atribuicao , ExprR ) DO { Atribuicoes }
+
+    (               shift and go to state 41
+
+
+state 18
+
+    (52) FUNC -> NOME . ( ARGS ) { Atribuicoes }
+    (53) FUNC -> NOME . ( ARGS ) { NEWLINE Atribuicoes NEWLINE }
+
+    (               shift and go to state 42
+
+
+state 19
+
+    (55) PRINTER -> PRINT . ( TEXTO )
+    (56) PRINTER -> PRINT . ( id )
+
+    (               shift and go to state 43
+
+
+state 20
+
+    (57) SCANNER -> SCAN . ( id )
+
+    (               shift and go to state 44
+
+
+state 21
+
+    (28) Expr -> Termo .
+    (31) Expr -> Termo . * Factor
+    (32) Expr -> Termo . / Factor
+    (25) Termo -> Termo . E Factor
+
+    <               reduce using rule 28 (Expr -> Termo .)
+    >               reduce using rule 28 (Expr -> Termo .)
+    EQUALS          reduce using rule 28 (Expr -> Termo .)
+    NOTEQUALS       reduce using rule 28 (Expr -> Termo .)
+    OU              reduce using rule 28 (Expr -> Termo .)
+    +               reduce using rule 28 (Expr -> Termo .)
+    -               reduce using rule 28 (Expr -> Termo .)
+    INT             reduce using rule 28 (Expr -> Termo .)
+    id              reduce using rule 28 (Expr -> Termo .)
+    IF              reduce using rule 28 (Expr -> Termo .)
+    FOR             reduce using rule 28 (Expr -> Termo .)
+    NOME            reduce using rule 28 (Expr -> Termo .)
+    PRINT           reduce using rule 28 (Expr -> Termo .)
+    SCAN            reduce using rule 28 (Expr -> Termo .)
+    num             reduce using rule 28 (Expr -> Termo .)
+    TRUE            reduce using rule 28 (Expr -> Termo .)
+    FALSE           reduce using rule 28 (Expr -> Termo .)
+    (               reduce using rule 28 (Expr -> Termo .)
+    $end            reduce using rule 28 (Expr -> Termo .)
+    )               reduce using rule 28 (Expr -> Termo .)
+    NEWLINE         reduce using rule 28 (Expr -> Termo .)
+    ,               reduce using rule 28 (Expr -> Termo .)
+    }               reduce using rule 28 (Expr -> Termo .)
+    *               shift and go to state 45
+    /               shift and go to state 46
+    E               shift and go to state 47
+
+
+state 22
+
+    (14) Factor -> - . num
+
+    num             shift and go to state 48
+
+
+state 23
+
+    (33) Termo -> Factor .
+
+    *               reduce using rule 33 (Termo -> Factor .)
+    /               reduce using rule 33 (Termo -> Factor .)
+    E               reduce using rule 33 (Termo -> Factor .)
+    <               reduce using rule 33 (Termo -> Factor .)
+    >               reduce using rule 33 (Termo -> Factor .)
+    EQUALS          reduce using rule 33 (Termo -> Factor .)
+    NOTEQUALS       reduce using rule 33 (Termo -> Factor .)
+    OU              reduce using rule 33 (Termo -> Factor .)
+    +               reduce using rule 33 (Termo -> Factor .)
+    -               reduce using rule 33 (Termo -> Factor .)
+    INT             reduce using rule 33 (Termo -> Factor .)
+    id              reduce using rule 33 (Termo -> Factor .)
+    IF              reduce using rule 33 (Termo -> Factor .)
+    FOR             reduce using rule 33 (Termo -> Factor .)
+    NOME            reduce using rule 33 (Termo -> Factor .)
+    PRINT           reduce using rule 33 (Termo -> Factor .)
+    SCAN            reduce using rule 33 (Termo -> Factor .)
+    num             reduce using rule 33 (Termo -> Factor .)
+    TRUE            reduce using rule 33 (Termo -> Factor .)
+    FALSE           reduce using rule 33 (Termo -> Factor .)
+    (               reduce using rule 33 (Termo -> Factor .)
+    $end            reduce using rule 33 (Termo -> Factor .)
+    )               reduce using rule 33 (Termo -> Factor .)
+    NEWLINE         reduce using rule 33 (Termo -> Factor .)
+    ,               reduce using rule 33 (Termo -> Factor .)
+    }               reduce using rule 33 (Termo -> Factor .)
+
+
+state 24
+
+    (13) Factor -> num .
+
+    *               reduce using rule 13 (Factor -> num .)
+    /               reduce using rule 13 (Factor -> num .)
+    E               reduce using rule 13 (Factor -> num .)
+    <               reduce using rule 13 (Factor -> num .)
+    >               reduce using rule 13 (Factor -> num .)
+    EQUALS          reduce using rule 13 (Factor -> num .)
+    NOTEQUALS       reduce using rule 13 (Factor -> num .)
+    OU              reduce using rule 13 (Factor -> num .)
+    +               reduce using rule 13 (Factor -> num .)
+    -               reduce using rule 13 (Factor -> num .)
+    INT             reduce using rule 13 (Factor -> num .)
+    id              reduce using rule 13 (Factor -> num .)
+    IF              reduce using rule 13 (Factor -> num .)
+    FOR             reduce using rule 13 (Factor -> num .)
+    NOME            reduce using rule 13 (Factor -> num .)
+    PRINT           reduce using rule 13 (Factor -> num .)
+    SCAN            reduce using rule 13 (Factor -> num .)
+    num             reduce using rule 13 (Factor -> num .)
+    TRUE            reduce using rule 13 (Factor -> num .)
+    FALSE           reduce using rule 13 (Factor -> num .)
+    (               reduce using rule 13 (Factor -> num .)
+    $end            reduce using rule 13 (Factor -> num .)
+    )               reduce using rule 13 (Factor -> num .)
+    NEWLINE         reduce using rule 13 (Factor -> num .)
+    ,               reduce using rule 13 (Factor -> num .)
+    }               reduce using rule 13 (Factor -> num .)
+
+
+state 25
+
+    (16) Factor -> TRUE .
+
+    *               reduce using rule 16 (Factor -> TRUE .)
+    /               reduce using rule 16 (Factor -> TRUE .)
+    E               reduce using rule 16 (Factor -> TRUE .)
+    <               reduce using rule 16 (Factor -> TRUE .)
+    >               reduce using rule 16 (Factor -> TRUE .)
+    EQUALS          reduce using rule 16 (Factor -> TRUE .)
+    NOTEQUALS       reduce using rule 16 (Factor -> TRUE .)
+    OU              reduce using rule 16 (Factor -> TRUE .)
+    +               reduce using rule 16 (Factor -> TRUE .)
+    -               reduce using rule 16 (Factor -> TRUE .)
+    INT             reduce using rule 16 (Factor -> TRUE .)
+    id              reduce using rule 16 (Factor -> TRUE .)
+    IF              reduce using rule 16 (Factor -> TRUE .)
+    FOR             reduce using rule 16 (Factor -> TRUE .)
+    NOME            reduce using rule 16 (Factor -> TRUE .)
+    PRINT           reduce using rule 16 (Factor -> TRUE .)
+    SCAN            reduce using rule 16 (Factor -> TRUE .)
+    num             reduce using rule 16 (Factor -> TRUE .)
+    TRUE            reduce using rule 16 (Factor -> TRUE .)
+    FALSE           reduce using rule 16 (Factor -> TRUE .)
+    (               reduce using rule 16 (Factor -> TRUE .)
+    $end            reduce using rule 16 (Factor -> TRUE .)
+    )               reduce using rule 16 (Factor -> TRUE .)
+    NEWLINE         reduce using rule 16 (Factor -> TRUE .)
+    ,               reduce using rule 16 (Factor -> TRUE .)
+    }               reduce using rule 16 (Factor -> TRUE .)
+
+
+state 26
+
+    (17) Factor -> FALSE .
+
+    *               reduce using rule 17 (Factor -> FALSE .)
+    /               reduce using rule 17 (Factor -> FALSE .)
+    E               reduce using rule 17 (Factor -> FALSE .)
+    <               reduce using rule 17 (Factor -> FALSE .)
+    >               reduce using rule 17 (Factor -> FALSE .)
+    EQUALS          reduce using rule 17 (Factor -> FALSE .)
+    NOTEQUALS       reduce using rule 17 (Factor -> FALSE .)
+    OU              reduce using rule 17 (Factor -> FALSE .)
+    +               reduce using rule 17 (Factor -> FALSE .)
+    -               reduce using rule 17 (Factor -> FALSE .)
+    INT             reduce using rule 17 (Factor -> FALSE .)
+    id              reduce using rule 17 (Factor -> FALSE .)
+    IF              reduce using rule 17 (Factor -> FALSE .)
+    FOR             reduce using rule 17 (Factor -> FALSE .)
+    NOME            reduce using rule 17 (Factor -> FALSE .)
+    PRINT           reduce using rule 17 (Factor -> FALSE .)
+    SCAN            reduce using rule 17 (Factor -> FALSE .)
+    num             reduce using rule 17 (Factor -> FALSE .)
+    TRUE            reduce using rule 17 (Factor -> FALSE .)
+    FALSE           reduce using rule 17 (Factor -> FALSE .)
+    (               reduce using rule 17 (Factor -> FALSE .)
+    $end            reduce using rule 17 (Factor -> FALSE .)
+    )               reduce using rule 17 (Factor -> FALSE .)
+    NEWLINE         reduce using rule 17 (Factor -> FALSE .)
+    ,               reduce using rule 17 (Factor -> FALSE .)
+    }               reduce using rule 17 (Factor -> FALSE .)
+
+
+state 27
+
+    (2) Comandos -> Comandos Comando .
+
+    INT             reduce using rule 2 (Comandos -> Comandos Comando .)
+    id              reduce using rule 2 (Comandos -> Comandos Comando .)
+    IF              reduce using rule 2 (Comandos -> Comandos Comando .)
+    FOR             reduce using rule 2 (Comandos -> Comandos Comando .)
+    NOME            reduce using rule 2 (Comandos -> Comandos Comando .)
+    PRINT           reduce using rule 2 (Comandos -> Comandos Comando .)
+    SCAN            reduce using rule 2 (Comandos -> Comandos Comando .)
+    num             reduce using rule 2 (Comandos -> Comandos Comando .)
+    -               reduce using rule 2 (Comandos -> Comandos Comando .)
+    TRUE            reduce using rule 2 (Comandos -> Comandos Comando .)
+    FALSE           reduce using rule 2 (Comandos -> Comandos Comando .)
+    (               reduce using rule 2 (Comandos -> Comandos Comando .)
+    $end            reduce using rule 2 (Comandos -> Comandos Comando .)
+
+
+state 28
+
+    (6) Comando -> Atribuicao NEWLINE .
+
+    INT             reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    id              reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    IF              reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    FOR             reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    NOME            reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    PRINT           reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    SCAN            reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    num             reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    -               reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    TRUE            reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    FALSE           reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    (               reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+    $end            reduce using rule 6 (Comando -> Atribuicao NEWLINE .)
+
+
+state 29
+
+    (19) ExprR -> Expr < . Expr
+    (21) ExprR -> Expr < . = Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    =               shift and go to state 50
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 49
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 30
+
+    (20) ExprR -> Expr > . Expr
+    (22) ExprR -> Expr > . = Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    =               shift and go to state 52
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 51
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 31
+
+    (23) ExprR -> Expr EQUALS . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 53
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 32
+
+    (24) ExprR -> Expr NOTEQUALS . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 54
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 33
+
+    (26) Expr -> Expr OU . Termo
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Termo                          shift and go to state 55
+    Factor                         shift and go to state 23
+
+state 34
+
+    (29) Expr -> Expr + . Termo
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Termo                          shift and go to state 56
+    Factor                         shift and go to state 23
+
+state 35
+
+    (30) Expr -> Expr - . Termo
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Termo                          shift and go to state 57
+    Factor                         shift and go to state 23
+
+state 36
+
+    (34) Declaracao -> INT id .
+
+    INT             reduce using rule 34 (Declaracao -> INT id .)
+    id              reduce using rule 34 (Declaracao -> INT id .)
+    IF              reduce using rule 34 (Declaracao -> INT id .)
+    FOR             reduce using rule 34 (Declaracao -> INT id .)
+    NOME            reduce using rule 34 (Declaracao -> INT id .)
+    PRINT           reduce using rule 34 (Declaracao -> INT id .)
+    SCAN            reduce using rule 34 (Declaracao -> INT id .)
+    num             reduce using rule 34 (Declaracao -> INT id .)
+    -               reduce using rule 34 (Declaracao -> INT id .)
+    TRUE            reduce using rule 34 (Declaracao -> INT id .)
+    FALSE           reduce using rule 34 (Declaracao -> INT id .)
+    (               reduce using rule 34 (Declaracao -> INT id .)
+    $end            reduce using rule 34 (Declaracao -> INT id .)
+
+
+state 37
+
+    (35) Atribuicao -> id = . ExprR
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    ExprR                          shift and go to state 58
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 38
+
+    (45) IFELSE -> IF ( . ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( . ExprR ) { Atribuicoes }
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    ExprR                          shift and go to state 59
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 39
+
+    (18) Factor -> ( ExprR . )
+
+    )               shift and go to state 60
+
+
+state 40
+
+    (15) Factor -> id .
+
+    *               reduce using rule 15 (Factor -> id .)
+    /               reduce using rule 15 (Factor -> id .)
+    E               reduce using rule 15 (Factor -> id .)
+    <               reduce using rule 15 (Factor -> id .)
+    >               reduce using rule 15 (Factor -> id .)
+    EQUALS          reduce using rule 15 (Factor -> id .)
+    NOTEQUALS       reduce using rule 15 (Factor -> id .)
+    OU              reduce using rule 15 (Factor -> id .)
+    +               reduce using rule 15 (Factor -> id .)
+    -               reduce using rule 15 (Factor -> id .)
+    )               reduce using rule 15 (Factor -> id .)
+    INT             reduce using rule 15 (Factor -> id .)
+    id              reduce using rule 15 (Factor -> id .)
+    IF              reduce using rule 15 (Factor -> id .)
+    FOR             reduce using rule 15 (Factor -> id .)
+    NOME            reduce using rule 15 (Factor -> id .)
+    PRINT           reduce using rule 15 (Factor -> id .)
+    SCAN            reduce using rule 15 (Factor -> id .)
+    num             reduce using rule 15 (Factor -> id .)
+    TRUE            reduce using rule 15 (Factor -> id .)
+    FALSE           reduce using rule 15 (Factor -> id .)
+    (               reduce using rule 15 (Factor -> id .)
+    $end            reduce using rule 15 (Factor -> id .)
+    NEWLINE         reduce using rule 15 (Factor -> id .)
+    ,               reduce using rule 15 (Factor -> id .)
+    }               reduce using rule 15 (Factor -> id .)
+
+
+state 41
+
+    (47) FORDO -> FOR ( . Atribuicao , ExprR ) DO { Atribuicoes }
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 61
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 42
+
+    (52) FUNC -> NOME ( . ARGS ) { Atribuicoes }
+    (53) FUNC -> NOME ( . ARGS ) { NEWLINE Atribuicoes NEWLINE }
+    (48) ARGS -> . ARG
+    (51) ARGS -> . ARGS , ARG
+    (49) ARG -> .
+    (50) ARG -> . id
+
+    )               reduce using rule 49 (ARG -> .)
+    ,               reduce using rule 49 (ARG -> .)
+    id              shift and go to state 70
+
+    ARGS                           shift and go to state 68
+    ARG                            shift and go to state 69
+
+state 43
+
+    (55) PRINTER -> PRINT ( . TEXTO )
+    (56) PRINTER -> PRINT ( . id )
+    (54) TEXTO -> . TEXT
+
+    id              shift and go to state 72
+    TEXT            shift and go to state 73
+
+    TEXTO                          shift and go to state 71
+
+state 44
+
+    (57) SCANNER -> SCAN ( . id )
+
+    id              shift and go to state 74
+
+
+state 45
+
+    (31) Expr -> Termo * . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Factor                         shift and go to state 75
+
+state 46
+
+    (32) Expr -> Termo / . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Factor                         shift and go to state 76
+
+state 47
+
+    (25) Termo -> Termo E . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Factor                         shift and go to state 77
+
+state 48
+
+    (14) Factor -> - num .
+
+    *               reduce using rule 14 (Factor -> - num .)
+    /               reduce using rule 14 (Factor -> - num .)
+    E               reduce using rule 14 (Factor -> - num .)
+    <               reduce using rule 14 (Factor -> - num .)
+    >               reduce using rule 14 (Factor -> - num .)
+    EQUALS          reduce using rule 14 (Factor -> - num .)
+    NOTEQUALS       reduce using rule 14 (Factor -> - num .)
+    OU              reduce using rule 14 (Factor -> - num .)
+    +               reduce using rule 14 (Factor -> - num .)
+    -               reduce using rule 14 (Factor -> - num .)
+    INT             reduce using rule 14 (Factor -> - num .)
+    id              reduce using rule 14 (Factor -> - num .)
+    IF              reduce using rule 14 (Factor -> - num .)
+    FOR             reduce using rule 14 (Factor -> - num .)
+    NOME            reduce using rule 14 (Factor -> - num .)
+    PRINT           reduce using rule 14 (Factor -> - num .)
+    SCAN            reduce using rule 14 (Factor -> - num .)
+    num             reduce using rule 14 (Factor -> - num .)
+    TRUE            reduce using rule 14 (Factor -> - num .)
+    FALSE           reduce using rule 14 (Factor -> - num .)
+    (               reduce using rule 14 (Factor -> - num .)
+    $end            reduce using rule 14 (Factor -> - num .)
+    )               reduce using rule 14 (Factor -> - num .)
+    NEWLINE         reduce using rule 14 (Factor -> - num .)
+    ,               reduce using rule 14 (Factor -> - num .)
+    }               reduce using rule 14 (Factor -> - num .)
+
+
+state 49
+
+    (19) ExprR -> Expr < Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 19 (ExprR -> Expr < Expr .)
+    id              reduce using rule 19 (ExprR -> Expr < Expr .)
+    IF              reduce using rule 19 (ExprR -> Expr < Expr .)
+    FOR             reduce using rule 19 (ExprR -> Expr < Expr .)
+    NOME            reduce using rule 19 (ExprR -> Expr < Expr .)
+    PRINT           reduce using rule 19 (ExprR -> Expr < Expr .)
+    SCAN            reduce using rule 19 (ExprR -> Expr < Expr .)
+    num             reduce using rule 19 (ExprR -> Expr < Expr .)
+    TRUE            reduce using rule 19 (ExprR -> Expr < Expr .)
+    FALSE           reduce using rule 19 (ExprR -> Expr < Expr .)
+    (               reduce using rule 19 (ExprR -> Expr < Expr .)
+    $end            reduce using rule 19 (ExprR -> Expr < Expr .)
+    )               reduce using rule 19 (ExprR -> Expr < Expr .)
+    NEWLINE         reduce using rule 19 (ExprR -> Expr < Expr .)
+    ,               reduce using rule 19 (ExprR -> Expr < Expr .)
+    }               reduce using rule 19 (ExprR -> Expr < Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 19 (ExprR -> Expr < Expr .) ]
+
+
+state 50
+
+    (21) ExprR -> Expr < = . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 78
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 51
+
+    (20) ExprR -> Expr > Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 20 (ExprR -> Expr > Expr .)
+    id              reduce using rule 20 (ExprR -> Expr > Expr .)
+    IF              reduce using rule 20 (ExprR -> Expr > Expr .)
+    FOR             reduce using rule 20 (ExprR -> Expr > Expr .)
+    NOME            reduce using rule 20 (ExprR -> Expr > Expr .)
+    PRINT           reduce using rule 20 (ExprR -> Expr > Expr .)
+    SCAN            reduce using rule 20 (ExprR -> Expr > Expr .)
+    num             reduce using rule 20 (ExprR -> Expr > Expr .)
+    TRUE            reduce using rule 20 (ExprR -> Expr > Expr .)
+    FALSE           reduce using rule 20 (ExprR -> Expr > Expr .)
+    (               reduce using rule 20 (ExprR -> Expr > Expr .)
+    $end            reduce using rule 20 (ExprR -> Expr > Expr .)
+    )               reduce using rule 20 (ExprR -> Expr > Expr .)
+    NEWLINE         reduce using rule 20 (ExprR -> Expr > Expr .)
+    ,               reduce using rule 20 (ExprR -> Expr > Expr .)
+    }               reduce using rule 20 (ExprR -> Expr > Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 20 (ExprR -> Expr > Expr .) ]
+
+
+state 52
+
+    (22) ExprR -> Expr > = . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    Expr                           shift and go to state 79
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 53
+
+    (23) ExprR -> Expr EQUALS Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    id              reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    IF              reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    FOR             reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    NOME            reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    PRINT           reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    SCAN            reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    num             reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    TRUE            reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    FALSE           reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    (               reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    $end            reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    )               reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    NEWLINE         reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    ,               reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    }               reduce using rule 23 (ExprR -> Expr EQUALS Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 23 (ExprR -> Expr EQUALS Expr .) ]
+
+
+state 54
+
+    (24) ExprR -> Expr NOTEQUALS Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    id              reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    IF              reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    FOR             reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    NOME            reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    PRINT           reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    SCAN            reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    num             reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    TRUE            reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    FALSE           reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    (               reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    $end            reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    )               reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    NEWLINE         reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    ,               reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    }               reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 24 (ExprR -> Expr NOTEQUALS Expr .) ]
+
+
+state 55
+
+    (26) Expr -> Expr OU Termo .
+    (25) Termo -> Termo . E Factor
+
+    <               reduce using rule 26 (Expr -> Expr OU Termo .)
+    >               reduce using rule 26 (Expr -> Expr OU Termo .)
+    EQUALS          reduce using rule 26 (Expr -> Expr OU Termo .)
+    NOTEQUALS       reduce using rule 26 (Expr -> Expr OU Termo .)
+    OU              reduce using rule 26 (Expr -> Expr OU Termo .)
+    +               reduce using rule 26 (Expr -> Expr OU Termo .)
+    -               reduce using rule 26 (Expr -> Expr OU Termo .)
+    INT             reduce using rule 26 (Expr -> Expr OU Termo .)
+    id              reduce using rule 26 (Expr -> Expr OU Termo .)
+    IF              reduce using rule 26 (Expr -> Expr OU Termo .)
+    FOR             reduce using rule 26 (Expr -> Expr OU Termo .)
+    NOME            reduce using rule 26 (Expr -> Expr OU Termo .)
+    PRINT           reduce using rule 26 (Expr -> Expr OU Termo .)
+    SCAN            reduce using rule 26 (Expr -> Expr OU Termo .)
+    num             reduce using rule 26 (Expr -> Expr OU Termo .)
+    TRUE            reduce using rule 26 (Expr -> Expr OU Termo .)
+    FALSE           reduce using rule 26 (Expr -> Expr OU Termo .)
+    (               reduce using rule 26 (Expr -> Expr OU Termo .)
+    $end            reduce using rule 26 (Expr -> Expr OU Termo .)
+    )               reduce using rule 26 (Expr -> Expr OU Termo .)
+    NEWLINE         reduce using rule 26 (Expr -> Expr OU Termo .)
+    ,               reduce using rule 26 (Expr -> Expr OU Termo .)
+    }               reduce using rule 26 (Expr -> Expr OU Termo .)
+    E               shift and go to state 47
+
+
+state 56
+
+    (29) Expr -> Expr + Termo .
+    (25) Termo -> Termo . E Factor
+
+    <               reduce using rule 29 (Expr -> Expr + Termo .)
+    >               reduce using rule 29 (Expr -> Expr + Termo .)
+    EQUALS          reduce using rule 29 (Expr -> Expr + Termo .)
+    NOTEQUALS       reduce using rule 29 (Expr -> Expr + Termo .)
+    OU              reduce using rule 29 (Expr -> Expr + Termo .)
+    +               reduce using rule 29 (Expr -> Expr + Termo .)
+    -               reduce using rule 29 (Expr -> Expr + Termo .)
+    INT             reduce using rule 29 (Expr -> Expr + Termo .)
+    id              reduce using rule 29 (Expr -> Expr + Termo .)
+    IF              reduce using rule 29 (Expr -> Expr + Termo .)
+    FOR             reduce using rule 29 (Expr -> Expr + Termo .)
+    NOME            reduce using rule 29 (Expr -> Expr + Termo .)
+    PRINT           reduce using rule 29 (Expr -> Expr + Termo .)
+    SCAN            reduce using rule 29 (Expr -> Expr + Termo .)
+    num             reduce using rule 29 (Expr -> Expr + Termo .)
+    TRUE            reduce using rule 29 (Expr -> Expr + Termo .)
+    FALSE           reduce using rule 29 (Expr -> Expr + Termo .)
+    (               reduce using rule 29 (Expr -> Expr + Termo .)
+    $end            reduce using rule 29 (Expr -> Expr + Termo .)
+    )               reduce using rule 29 (Expr -> Expr + Termo .)
+    NEWLINE         reduce using rule 29 (Expr -> Expr + Termo .)
+    ,               reduce using rule 29 (Expr -> Expr + Termo .)
+    }               reduce using rule 29 (Expr -> Expr + Termo .)
+    E               shift and go to state 47
+
+
+state 57
+
+    (30) Expr -> Expr - Termo .
+    (25) Termo -> Termo . E Factor
+
+    <               reduce using rule 30 (Expr -> Expr - Termo .)
+    >               reduce using rule 30 (Expr -> Expr - Termo .)
+    EQUALS          reduce using rule 30 (Expr -> Expr - Termo .)
+    NOTEQUALS       reduce using rule 30 (Expr -> Expr - Termo .)
+    OU              reduce using rule 30 (Expr -> Expr - Termo .)
+    +               reduce using rule 30 (Expr -> Expr - Termo .)
+    -               reduce using rule 30 (Expr -> Expr - Termo .)
+    INT             reduce using rule 30 (Expr -> Expr - Termo .)
+    id              reduce using rule 30 (Expr -> Expr - Termo .)
+    IF              reduce using rule 30 (Expr -> Expr - Termo .)
+    FOR             reduce using rule 30 (Expr -> Expr - Termo .)
+    NOME            reduce using rule 30 (Expr -> Expr - Termo .)
+    PRINT           reduce using rule 30 (Expr -> Expr - Termo .)
+    SCAN            reduce using rule 30 (Expr -> Expr - Termo .)
+    num             reduce using rule 30 (Expr -> Expr - Termo .)
+    TRUE            reduce using rule 30 (Expr -> Expr - Termo .)
+    FALSE           reduce using rule 30 (Expr -> Expr - Termo .)
+    (               reduce using rule 30 (Expr -> Expr - Termo .)
+    $end            reduce using rule 30 (Expr -> Expr - Termo .)
+    )               reduce using rule 30 (Expr -> Expr - Termo .)
+    NEWLINE         reduce using rule 30 (Expr -> Expr - Termo .)
+    ,               reduce using rule 30 (Expr -> Expr - Termo .)
+    }               reduce using rule 30 (Expr -> Expr - Termo .)
+    E               shift and go to state 47
+
+
+state 58
+
+    (35) Atribuicao -> id = ExprR .
+
+    NEWLINE         reduce using rule 35 (Atribuicao -> id = ExprR .)
+    INT             reduce using rule 35 (Atribuicao -> id = ExprR .)
+    id              reduce using rule 35 (Atribuicao -> id = ExprR .)
+    IF              reduce using rule 35 (Atribuicao -> id = ExprR .)
+    FOR             reduce using rule 35 (Atribuicao -> id = ExprR .)
+    NOME            reduce using rule 35 (Atribuicao -> id = ExprR .)
+    PRINT           reduce using rule 35 (Atribuicao -> id = ExprR .)
+    SCAN            reduce using rule 35 (Atribuicao -> id = ExprR .)
+    num             reduce using rule 35 (Atribuicao -> id = ExprR .)
+    -               reduce using rule 35 (Atribuicao -> id = ExprR .)
+    TRUE            reduce using rule 35 (Atribuicao -> id = ExprR .)
+    FALSE           reduce using rule 35 (Atribuicao -> id = ExprR .)
+    (               reduce using rule 35 (Atribuicao -> id = ExprR .)
+    $end            reduce using rule 35 (Atribuicao -> id = ExprR .)
+    ,               reduce using rule 35 (Atribuicao -> id = ExprR .)
+    }               reduce using rule 35 (Atribuicao -> id = ExprR .)
+
+
+state 59
+
+    (45) IFELSE -> IF ( ExprR . ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( ExprR . ) { Atribuicoes }
+
+    )               shift and go to state 80
+
+
+state 60
+
+    (18) Factor -> ( ExprR ) .
+
+    *               reduce using rule 18 (Factor -> ( ExprR ) .)
+    /               reduce using rule 18 (Factor -> ( ExprR ) .)
+    E               reduce using rule 18 (Factor -> ( ExprR ) .)
+    <               reduce using rule 18 (Factor -> ( ExprR ) .)
+    >               reduce using rule 18 (Factor -> ( ExprR ) .)
+    EQUALS          reduce using rule 18 (Factor -> ( ExprR ) .)
+    NOTEQUALS       reduce using rule 18 (Factor -> ( ExprR ) .)
+    OU              reduce using rule 18 (Factor -> ( ExprR ) .)
+    +               reduce using rule 18 (Factor -> ( ExprR ) .)
+    -               reduce using rule 18 (Factor -> ( ExprR ) .)
+    INT             reduce using rule 18 (Factor -> ( ExprR ) .)
+    id              reduce using rule 18 (Factor -> ( ExprR ) .)
+    IF              reduce using rule 18 (Factor -> ( ExprR ) .)
+    FOR             reduce using rule 18 (Factor -> ( ExprR ) .)
+    NOME            reduce using rule 18 (Factor -> ( ExprR ) .)
+    PRINT           reduce using rule 18 (Factor -> ( ExprR ) .)
+    SCAN            reduce using rule 18 (Factor -> ( ExprR ) .)
+    num             reduce using rule 18 (Factor -> ( ExprR ) .)
+    TRUE            reduce using rule 18 (Factor -> ( ExprR ) .)
+    FALSE           reduce using rule 18 (Factor -> ( ExprR ) .)
+    (               reduce using rule 18 (Factor -> ( ExprR ) .)
+    $end            reduce using rule 18 (Factor -> ( ExprR ) .)
+    )               reduce using rule 18 (Factor -> ( ExprR ) .)
+    NEWLINE         reduce using rule 18 (Factor -> ( ExprR ) .)
+    ,               reduce using rule 18 (Factor -> ( ExprR ) .)
+    }               reduce using rule 18 (Factor -> ( ExprR ) .)
+
+
+state 61
+
+    (47) FORDO -> FOR ( Atribuicao . , ExprR ) DO { Atribuicoes }
+
+    ,               shift and go to state 81
+
+
+state 62
+
+    (35) Atribuicao -> id . = ExprR
+
+    =               shift and go to state 37
+
+
+state 63
+
+    (41) Atribuicao -> ONLYIF .
+
+    ,               reduce using rule 41 (Atribuicao -> ONLYIF .)
+    NEWLINE         reduce using rule 41 (Atribuicao -> ONLYIF .)
+    }               reduce using rule 41 (Atribuicao -> ONLYIF .)
+    id              reduce using rule 41 (Atribuicao -> ONLYIF .)
+    IF              reduce using rule 41 (Atribuicao -> ONLYIF .)
+    FOR             reduce using rule 41 (Atribuicao -> ONLYIF .)
+    PRINT           reduce using rule 41 (Atribuicao -> ONLYIF .)
+    SCAN            reduce using rule 41 (Atribuicao -> ONLYIF .)
+
+
+state 64
+
+    (42) Atribuicao -> FORDO .
+
+    ,               reduce using rule 42 (Atribuicao -> FORDO .)
+    NEWLINE         reduce using rule 42 (Atribuicao -> FORDO .)
+    }               reduce using rule 42 (Atribuicao -> FORDO .)
+    id              reduce using rule 42 (Atribuicao -> FORDO .)
+    IF              reduce using rule 42 (Atribuicao -> FORDO .)
+    FOR             reduce using rule 42 (Atribuicao -> FORDO .)
+    PRINT           reduce using rule 42 (Atribuicao -> FORDO .)
+    SCAN            reduce using rule 42 (Atribuicao -> FORDO .)
+
+
+state 65
+
+    (43) Atribuicao -> PRINTER .
+
+    ,               reduce using rule 43 (Atribuicao -> PRINTER .)
+    NEWLINE         reduce using rule 43 (Atribuicao -> PRINTER .)
+    }               reduce using rule 43 (Atribuicao -> PRINTER .)
+    id              reduce using rule 43 (Atribuicao -> PRINTER .)
+    IF              reduce using rule 43 (Atribuicao -> PRINTER .)
+    FOR             reduce using rule 43 (Atribuicao -> PRINTER .)
+    PRINT           reduce using rule 43 (Atribuicao -> PRINTER .)
+    SCAN            reduce using rule 43 (Atribuicao -> PRINTER .)
+
+
+state 66
+
+    (44) Atribuicao -> SCANNER .
+
+    ,               reduce using rule 44 (Atribuicao -> SCANNER .)
+    NEWLINE         reduce using rule 44 (Atribuicao -> SCANNER .)
+    }               reduce using rule 44 (Atribuicao -> SCANNER .)
+    id              reduce using rule 44 (Atribuicao -> SCANNER .)
+    IF              reduce using rule 44 (Atribuicao -> SCANNER .)
+    FOR             reduce using rule 44 (Atribuicao -> SCANNER .)
+    PRINT           reduce using rule 44 (Atribuicao -> SCANNER .)
+    SCAN            reduce using rule 44 (Atribuicao -> SCANNER .)
+
+
+state 67
+
+    (46) ONLYIF -> IF . ( ExprR ) { Atribuicoes }
+
+    (               shift and go to state 82
+
+
+state 68
+
+    (52) FUNC -> NOME ( ARGS . ) { Atribuicoes }
+    (53) FUNC -> NOME ( ARGS . ) { NEWLINE Atribuicoes NEWLINE }
+    (51) ARGS -> ARGS . , ARG
+
+    )               shift and go to state 83
+    ,               shift and go to state 84
+
+
+state 69
+
+    (48) ARGS -> ARG .
+
+    )               reduce using rule 48 (ARGS -> ARG .)
+    ,               reduce using rule 48 (ARGS -> ARG .)
+
+
+state 70
+
+    (50) ARG -> id .
+
+    )               reduce using rule 50 (ARG -> id .)
+    ,               reduce using rule 50 (ARG -> id .)
+
+
+state 71
+
+    (55) PRINTER -> PRINT ( TEXTO . )
+
+    )               shift and go to state 85
+
+
+state 72
+
+    (56) PRINTER -> PRINT ( id . )
+
+    )               shift and go to state 86
+
+
+state 73
+
+    (54) TEXTO -> TEXT .
+
+    )               reduce using rule 54 (TEXTO -> TEXT .)
+
+
+state 74
+
+    (57) SCANNER -> SCAN ( id . )
+
+    )               shift and go to state 87
+
+
+state 75
+
+    (31) Expr -> Termo * Factor .
+
+    <               reduce using rule 31 (Expr -> Termo * Factor .)
+    >               reduce using rule 31 (Expr -> Termo * Factor .)
+    EQUALS          reduce using rule 31 (Expr -> Termo * Factor .)
+    NOTEQUALS       reduce using rule 31 (Expr -> Termo * Factor .)
+    OU              reduce using rule 31 (Expr -> Termo * Factor .)
+    +               reduce using rule 31 (Expr -> Termo * Factor .)
+    -               reduce using rule 31 (Expr -> Termo * Factor .)
+    INT             reduce using rule 31 (Expr -> Termo * Factor .)
+    id              reduce using rule 31 (Expr -> Termo * Factor .)
+    IF              reduce using rule 31 (Expr -> Termo * Factor .)
+    FOR             reduce using rule 31 (Expr -> Termo * Factor .)
+    NOME            reduce using rule 31 (Expr -> Termo * Factor .)
+    PRINT           reduce using rule 31 (Expr -> Termo * Factor .)
+    SCAN            reduce using rule 31 (Expr -> Termo * Factor .)
+    num             reduce using rule 31 (Expr -> Termo * Factor .)
+    TRUE            reduce using rule 31 (Expr -> Termo * Factor .)
+    FALSE           reduce using rule 31 (Expr -> Termo * Factor .)
+    (               reduce using rule 31 (Expr -> Termo * Factor .)
+    $end            reduce using rule 31 (Expr -> Termo * Factor .)
+    )               reduce using rule 31 (Expr -> Termo * Factor .)
+    NEWLINE         reduce using rule 31 (Expr -> Termo * Factor .)
+    ,               reduce using rule 31 (Expr -> Termo * Factor .)
+    }               reduce using rule 31 (Expr -> Termo * Factor .)
+
+
+state 76
+
+    (32) Expr -> Termo / Factor .
+
+    <               reduce using rule 32 (Expr -> Termo / Factor .)
+    >               reduce using rule 32 (Expr -> Termo / Factor .)
+    EQUALS          reduce using rule 32 (Expr -> Termo / Factor .)
+    NOTEQUALS       reduce using rule 32 (Expr -> Termo / Factor .)
+    OU              reduce using rule 32 (Expr -> Termo / Factor .)
+    +               reduce using rule 32 (Expr -> Termo / Factor .)
+    -               reduce using rule 32 (Expr -> Termo / Factor .)
+    INT             reduce using rule 32 (Expr -> Termo / Factor .)
+    id              reduce using rule 32 (Expr -> Termo / Factor .)
+    IF              reduce using rule 32 (Expr -> Termo / Factor .)
+    FOR             reduce using rule 32 (Expr -> Termo / Factor .)
+    NOME            reduce using rule 32 (Expr -> Termo / Factor .)
+    PRINT           reduce using rule 32 (Expr -> Termo / Factor .)
+    SCAN            reduce using rule 32 (Expr -> Termo / Factor .)
+    num             reduce using rule 32 (Expr -> Termo / Factor .)
+    TRUE            reduce using rule 32 (Expr -> Termo / Factor .)
+    FALSE           reduce using rule 32 (Expr -> Termo / Factor .)
+    (               reduce using rule 32 (Expr -> Termo / Factor .)
+    $end            reduce using rule 32 (Expr -> Termo / Factor .)
+    )               reduce using rule 32 (Expr -> Termo / Factor .)
+    NEWLINE         reduce using rule 32 (Expr -> Termo / Factor .)
+    ,               reduce using rule 32 (Expr -> Termo / Factor .)
+    }               reduce using rule 32 (Expr -> Termo / Factor .)
+
+
+state 77
+
+    (25) Termo -> Termo E Factor .
+
+    *               reduce using rule 25 (Termo -> Termo E Factor .)
+    /               reduce using rule 25 (Termo -> Termo E Factor .)
+    E               reduce using rule 25 (Termo -> Termo E Factor .)
+    <               reduce using rule 25 (Termo -> Termo E Factor .)
+    >               reduce using rule 25 (Termo -> Termo E Factor .)
+    EQUALS          reduce using rule 25 (Termo -> Termo E Factor .)
+    NOTEQUALS       reduce using rule 25 (Termo -> Termo E Factor .)
+    OU              reduce using rule 25 (Termo -> Termo E Factor .)
+    +               reduce using rule 25 (Termo -> Termo E Factor .)
+    -               reduce using rule 25 (Termo -> Termo E Factor .)
+    INT             reduce using rule 25 (Termo -> Termo E Factor .)
+    id              reduce using rule 25 (Termo -> Termo E Factor .)
+    IF              reduce using rule 25 (Termo -> Termo E Factor .)
+    FOR             reduce using rule 25 (Termo -> Termo E Factor .)
+    NOME            reduce using rule 25 (Termo -> Termo E Factor .)
+    PRINT           reduce using rule 25 (Termo -> Termo E Factor .)
+    SCAN            reduce using rule 25 (Termo -> Termo E Factor .)
+    num             reduce using rule 25 (Termo -> Termo E Factor .)
+    TRUE            reduce using rule 25 (Termo -> Termo E Factor .)
+    FALSE           reduce using rule 25 (Termo -> Termo E Factor .)
+    (               reduce using rule 25 (Termo -> Termo E Factor .)
+    $end            reduce using rule 25 (Termo -> Termo E Factor .)
+    )               reduce using rule 25 (Termo -> Termo E Factor .)
+    NEWLINE         reduce using rule 25 (Termo -> Termo E Factor .)
+    ,               reduce using rule 25 (Termo -> Termo E Factor .)
+    }               reduce using rule 25 (Termo -> Termo E Factor .)
+
+
+state 78
+
+    (21) ExprR -> Expr < = Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 21 (ExprR -> Expr < = Expr .)
+    id              reduce using rule 21 (ExprR -> Expr < = Expr .)
+    IF              reduce using rule 21 (ExprR -> Expr < = Expr .)
+    FOR             reduce using rule 21 (ExprR -> Expr < = Expr .)
+    NOME            reduce using rule 21 (ExprR -> Expr < = Expr .)
+    PRINT           reduce using rule 21 (ExprR -> Expr < = Expr .)
+    SCAN            reduce using rule 21 (ExprR -> Expr < = Expr .)
+    num             reduce using rule 21 (ExprR -> Expr < = Expr .)
+    TRUE            reduce using rule 21 (ExprR -> Expr < = Expr .)
+    FALSE           reduce using rule 21 (ExprR -> Expr < = Expr .)
+    (               reduce using rule 21 (ExprR -> Expr < = Expr .)
+    $end            reduce using rule 21 (ExprR -> Expr < = Expr .)
+    )               reduce using rule 21 (ExprR -> Expr < = Expr .)
+    NEWLINE         reduce using rule 21 (ExprR -> Expr < = Expr .)
+    ,               reduce using rule 21 (ExprR -> Expr < = Expr .)
+    }               reduce using rule 21 (ExprR -> Expr < = Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 21 (ExprR -> Expr < = Expr .) ]
+
+
+state 79
+
+    (22) ExprR -> Expr > = Expr .
+    (26) Expr -> Expr . OU Termo
+    (29) Expr -> Expr . + Termo
+    (30) Expr -> Expr . - Termo
+
+  ! shift/reduce conflict for - resolved as shift
+    INT             reduce using rule 22 (ExprR -> Expr > = Expr .)
+    id              reduce using rule 22 (ExprR -> Expr > = Expr .)
+    IF              reduce using rule 22 (ExprR -> Expr > = Expr .)
+    FOR             reduce using rule 22 (ExprR -> Expr > = Expr .)
+    NOME            reduce using rule 22 (ExprR -> Expr > = Expr .)
+    PRINT           reduce using rule 22 (ExprR -> Expr > = Expr .)
+    SCAN            reduce using rule 22 (ExprR -> Expr > = Expr .)
+    num             reduce using rule 22 (ExprR -> Expr > = Expr .)
+    TRUE            reduce using rule 22 (ExprR -> Expr > = Expr .)
+    FALSE           reduce using rule 22 (ExprR -> Expr > = Expr .)
+    (               reduce using rule 22 (ExprR -> Expr > = Expr .)
+    $end            reduce using rule 22 (ExprR -> Expr > = Expr .)
+    )               reduce using rule 22 (ExprR -> Expr > = Expr .)
+    NEWLINE         reduce using rule 22 (ExprR -> Expr > = Expr .)
+    ,               reduce using rule 22 (ExprR -> Expr > = Expr .)
+    }               reduce using rule 22 (ExprR -> Expr > = Expr .)
+    OU              shift and go to state 33
+    +               shift and go to state 34
+    -               shift and go to state 35
+
+  ! -               [ reduce using rule 22 (ExprR -> Expr > = Expr .) ]
+
+
+state 80
+
+    (45) IFELSE -> IF ( ExprR ) . { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( ExprR ) . { Atribuicoes }
+
+    {               shift and go to state 88
+
+
+state 81
+
+    (47) FORDO -> FOR ( Atribuicao , . ExprR ) DO { Atribuicoes }
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    ExprR                          shift and go to state 89
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 82
+
+    (46) ONLYIF -> IF ( . ExprR ) { Atribuicoes }
+    (19) ExprR -> . Expr < Expr
+    (20) ExprR -> . Expr > Expr
+    (21) ExprR -> . Expr < = Expr
+    (22) ExprR -> . Expr > = Expr
+    (23) ExprR -> . Expr EQUALS Expr
+    (24) ExprR -> . Expr NOTEQUALS Expr
+    (27) ExprR -> . Expr
+    (26) Expr -> . Expr OU Termo
+    (28) Expr -> . Termo
+    (29) Expr -> . Expr + Termo
+    (30) Expr -> . Expr - Termo
+    (31) Expr -> . Termo * Factor
+    (32) Expr -> . Termo / Factor
+    (25) Termo -> . Termo E Factor
+    (33) Termo -> . Factor
+    (13) Factor -> . num
+    (14) Factor -> . - num
+    (15) Factor -> . id
+    (16) Factor -> . TRUE
+    (17) Factor -> . FALSE
+    (18) Factor -> . ( ExprR )
+
+    num             shift and go to state 24
+    -               shift and go to state 22
+    id              shift and go to state 40
+    TRUE            shift and go to state 25
+    FALSE           shift and go to state 26
+    (               shift and go to state 16
+
+    ExprR                          shift and go to state 90
+    Expr                           shift and go to state 12
+    Termo                          shift and go to state 21
+    Factor                         shift and go to state 23
+
+state 83
+
+    (52) FUNC -> NOME ( ARGS ) . { Atribuicoes }
+    (53) FUNC -> NOME ( ARGS ) . { NEWLINE Atribuicoes NEWLINE }
+
+    {               shift and go to state 91
+
+
+state 84
+
+    (51) ARGS -> ARGS , . ARG
+    (49) ARG -> .
+    (50) ARG -> . id
+
+    )               reduce using rule 49 (ARG -> .)
+    ,               reduce using rule 49 (ARG -> .)
+    id              shift and go to state 70
+
+    ARG                            shift and go to state 92
+
+state 85
+
+    (55) PRINTER -> PRINT ( TEXTO ) .
+
+    INT             reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    id              reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    IF              reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    FOR             reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    NOME            reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    PRINT           reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    SCAN            reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    num             reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    -               reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    TRUE            reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    FALSE           reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    (               reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    $end            reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    NEWLINE         reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    ,               reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+    }               reduce using rule 55 (PRINTER -> PRINT ( TEXTO ) .)
+
+
+state 86
+
+    (56) PRINTER -> PRINT ( id ) .
+
+    INT             reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    id              reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    IF              reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    FOR             reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    NOME            reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    PRINT           reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    SCAN            reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    num             reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    -               reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    TRUE            reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    FALSE           reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    (               reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    $end            reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    NEWLINE         reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    ,               reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+    }               reduce using rule 56 (PRINTER -> PRINT ( id ) .)
+
+
+state 87
+
+    (57) SCANNER -> SCAN ( id ) .
+
+    INT             reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    id              reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    IF              reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    FOR             reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    NOME            reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    PRINT           reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    SCAN            reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    num             reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    -               reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    TRUE            reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    FALSE           reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    (               reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    $end            reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    NEWLINE         reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    ,               reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+    }               reduce using rule 57 (SCANNER -> SCAN ( id ) .)
+
+
+state 88
+
+    (45) IFELSE -> IF ( ExprR ) { . Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( ExprR ) { . Atribuicoes }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicoes                    shift and go to state 93
+    Atribuicao                     shift and go to state 94
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 89
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR . ) DO { Atribuicoes }
+
+    )               shift and go to state 96
+
+
+state 90
+
+    (46) ONLYIF -> IF ( ExprR . ) { Atribuicoes }
+
+    )               shift and go to state 97
+
+
+state 91
+
+    (52) FUNC -> NOME ( ARGS ) { . Atribuicoes }
+    (53) FUNC -> NOME ( ARGS ) { . NEWLINE Atribuicoes NEWLINE }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    NEWLINE         shift and go to state 99
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicoes                    shift and go to state 98
+    Atribuicao                     shift and go to state 94
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 92
+
+    (51) ARGS -> ARGS , ARG .
+
+    )               reduce using rule 51 (ARGS -> ARGS , ARG .)
+    ,               reduce using rule 51 (ARGS -> ARGS , ARG .)
+
+
+state 93
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes . } ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( ExprR ) { Atribuicoes . }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 100
+    NEWLINE         shift and go to state 102
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 94
+
+    (36) Atribuicoes -> Atribuicao .
+    (37) Atribuicoes -> Atribuicao . NEWLINE
+
+  ! shift/reduce conflict for NEWLINE resolved as shift
+    }               reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    id              reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    IF              reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    FOR             reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    PRINT           reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    SCAN            reduce using rule 36 (Atribuicoes -> Atribuicao .)
+    NEWLINE         shift and go to state 103
+
+  ! NEWLINE         [ reduce using rule 36 (Atribuicoes -> Atribuicao .) ]
+
+
+state 95
+
+    (40) Atribuicoes -> IFELSE .
+
+    }               reduce using rule 40 (Atribuicoes -> IFELSE .)
+    NEWLINE         reduce using rule 40 (Atribuicoes -> IFELSE .)
+    id              reduce using rule 40 (Atribuicoes -> IFELSE .)
+    IF              reduce using rule 40 (Atribuicoes -> IFELSE .)
+    FOR             reduce using rule 40 (Atribuicoes -> IFELSE .)
+    PRINT           reduce using rule 40 (Atribuicoes -> IFELSE .)
+    SCAN            reduce using rule 40 (Atribuicoes -> IFELSE .)
+
+
+state 96
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR ) . DO { Atribuicoes }
+
+    DO              shift and go to state 104
+
+
+state 97
+
+    (46) ONLYIF -> IF ( ExprR ) . { Atribuicoes }
+
+    {               shift and go to state 105
+
+
+state 98
+
+    (52) FUNC -> NOME ( ARGS ) { Atribuicoes . }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 106
+    NEWLINE         shift and go to state 102
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 99
+
+    (53) FUNC -> NOME ( ARGS ) { NEWLINE . Atribuicoes NEWLINE }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicoes                    shift and go to state 107
+    Atribuicao                     shift and go to state 94
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 100
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes } . ELSE { Atribuicoes }
+    (46) ONLYIF -> IF ( ExprR ) { Atribuicoes } .
+
+    ELSE            shift and go to state 108
+    INT             reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    id              reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    IF              reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    FOR             reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    NOME            reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    PRINT           reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    SCAN            reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    num             reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    -               reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    TRUE            reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    FALSE           reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    (               reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    $end            reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    NEWLINE         reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    }               reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+
+
+state 101
+
+    (38) Atribuicoes -> Atribuicoes Atribuicao .
+
+    }               reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    NEWLINE         reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    id              reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    IF              reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    FOR             reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    PRINT           reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+    SCAN            reduce using rule 38 (Atribuicoes -> Atribuicoes Atribuicao .)
+
+
+state 102
+
+    (39) Atribuicoes -> Atribuicoes NEWLINE . Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 109
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 103
+
+    (37) Atribuicoes -> Atribuicao NEWLINE .
+
+    }               reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    NEWLINE         reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    id              reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    IF              reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    FOR             reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    PRINT           reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+    SCAN            reduce using rule 37 (Atribuicoes -> Atribuicao NEWLINE .)
+
+
+state 104
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR ) DO . { Atribuicoes }
+
+    {               shift and go to state 110
+
+
+state 105
+
+    (46) ONLYIF -> IF ( ExprR ) { . Atribuicoes }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicoes                    shift and go to state 111
+    Atribuicao                     shift and go to state 94
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 106
+
+    (52) FUNC -> NOME ( ARGS ) { Atribuicoes } .
+
+    INT             reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    id              reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    IF              reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    FOR             reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    NOME            reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    PRINT           reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    SCAN            reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    num             reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    -               reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    TRUE            reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    FALSE           reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    (               reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+    $end            reduce using rule 52 (FUNC -> NOME ( ARGS ) { Atribuicoes } .)
+
+
+state 107
+
+    (53) FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes . NEWLINE }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    NEWLINE         shift and go to state 112
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 108
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE . { Atribuicoes }
+
+    {               shift and go to state 113
+
+
+state 109
+
+    (39) Atribuicoes -> Atribuicoes NEWLINE Atribuicao .
+
+    }               reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    NEWLINE         reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    id              reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    IF              reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    FOR             reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    PRINT           reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+    SCAN            reduce using rule 39 (Atribuicoes -> Atribuicoes NEWLINE Atribuicao .)
+
+
+state 110
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR ) DO { . Atribuicoes }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 94
+    Atribuicoes                    shift and go to state 114
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 111
+
+    (46) ONLYIF -> IF ( ExprR ) { Atribuicoes . }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 115
+    NEWLINE         shift and go to state 102
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 112
+
+    (53) FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE . }
+    (39) Atribuicoes -> Atribuicoes NEWLINE . Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 116
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 109
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 113
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { . Atribuicoes }
+    (36) Atribuicoes -> . Atribuicao
+    (37) Atribuicoes -> . Atribuicao NEWLINE
+    (38) Atribuicoes -> . Atribuicoes Atribuicao
+    (39) Atribuicoes -> . Atribuicoes NEWLINE Atribuicao
+    (40) Atribuicoes -> . IFELSE
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (45) IFELSE -> . IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes }
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    id              shift and go to state 62
+    IF              shift and go to state 15
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicoes                    shift and go to state 117
+    Atribuicao                     shift and go to state 94
+    IFELSE                         shift and go to state 95
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 114
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes . }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 118
+    NEWLINE         shift and go to state 102
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 115
+
+    (46) ONLYIF -> IF ( ExprR ) { Atribuicoes } .
+
+    ,               reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    }               reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    NEWLINE         reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    id              reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    IF              reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    FOR             reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    PRINT           reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+    SCAN            reduce using rule 46 (ONLYIF -> IF ( ExprR ) { Atribuicoes } .)
+
+
+state 116
+
+    (53) FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .
+
+    INT             reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    id              reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    IF              reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    FOR             reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    NOME            reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    PRINT           reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    SCAN            reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    num             reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    -               reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    TRUE            reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    FALSE           reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    (               reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+    $end            reduce using rule 53 (FUNC -> NOME ( ARGS ) { NEWLINE Atribuicoes NEWLINE } .)
+
+
+state 117
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes . }
+    (38) Atribuicoes -> Atribuicoes . Atribuicao
+    (39) Atribuicoes -> Atribuicoes . NEWLINE Atribuicao
+    (35) Atribuicao -> . id = ExprR
+    (41) Atribuicao -> . ONLYIF
+    (42) Atribuicao -> . FORDO
+    (43) Atribuicao -> . PRINTER
+    (44) Atribuicao -> . SCANNER
+    (46) ONLYIF -> . IF ( ExprR ) { Atribuicoes }
+    (47) FORDO -> . FOR ( Atribuicao , ExprR ) DO { Atribuicoes }
+    (55) PRINTER -> . PRINT ( TEXTO )
+    (56) PRINTER -> . PRINT ( id )
+    (57) SCANNER -> . SCAN ( id )
+
+    }               shift and go to state 119
+    NEWLINE         shift and go to state 102
+    id              shift and go to state 62
+    IF              shift and go to state 67
+    FOR             shift and go to state 17
+    PRINT           shift and go to state 19
+    SCAN            shift and go to state 20
+
+    Atribuicao                     shift and go to state 101
+    ONLYIF                         shift and go to state 63
+    FORDO                          shift and go to state 64
+    PRINTER                        shift and go to state 65
+    SCANNER                        shift and go to state 66
+
+state 118
+
+    (47) FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .
+
+    INT             reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    id              reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    IF              reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    FOR             reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    NOME            reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    PRINT           reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    SCAN            reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    num             reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    -               reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    TRUE            reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    FALSE           reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    (               reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    $end            reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    NEWLINE         reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    ,               reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+    }               reduce using rule 47 (FORDO -> FOR ( Atribuicao , ExprR ) DO { Atribuicoes } .)
+
+
+state 119
+
+    (45) IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .
+
+    INT             reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    id              reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    IF              reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    FOR             reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    NOME            reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    PRINT           reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    SCAN            reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    num             reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    -               reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    TRUE            reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    FALSE           reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    (               reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    $end            reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    }               reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+    NEWLINE         reduce using rule 45 (IFELSE -> IF ( ExprR ) { Atribuicoes } ELSE { Atribuicoes } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for - in state 12 resolved as shift
+WARNING: shift/reduce conflict for - in state 49 resolved as shift
+WARNING: shift/reduce conflict for - in state 51 resolved as shift
+WARNING: shift/reduce conflict for - in state 53 resolved as shift
+WARNING: shift/reduce conflict for - in state 54 resolved as shift
+WARNING: shift/reduce conflict for - in state 78 resolved as shift
+WARNING: shift/reduce conflict for - in state 79 resolved as shift
+WARNING: shift/reduce conflict for NEWLINE in state 94 resolved as shift
+WARNING: reduce/reduce conflict in state 7 resolved using rule (Comando -> ONLYIF)
+WARNING: rejected rule (Atribuicao -> ONLYIF) in state 7
+WARNING: reduce/reduce conflict in state 8 resolved using rule (Comando -> FORDO)
+WARNING: rejected rule (Atribuicao -> FORDO) in state 8
+WARNING: reduce/reduce conflict in state 10 resolved using rule (Comando -> PRINTER)
+WARNING: rejected rule (Atribuicao -> PRINTER) in state 10
+WARNING: reduce/reduce conflict in state 11 resolved using rule (Comando -> SCANNER)
+WARNING: rejected rule (Atribuicao -> SCANNER) in state 11

@@ -1,8 +1,7 @@
 import ply.yacc as yacc
 from tp2_lex import tokens
-#from calc_lex import literals
+from tp2_lex import literals
 import sys
-
 
 #Data Structure
 #key : string (nome da variavel)
@@ -23,18 +22,15 @@ out.write("START\n")
 #Comandos
 def p_Comandos_comando(p):
     "Comandos : Comando"
-    p[0] = p[1]
-    #out.write(p[1]+"\n")
+    out.write(p[1]+"\n")
 
 def p_Comandos_comandos_comando(p):
     "Comandos : Comandos Comando"
-    p[0] = p[2]   
-    #out.write(p[2]+"\n")
+    out.write(p[2]+"\n")
 
 def p_Comando_ExprR(p):
     "Comando : ExprR"
     p[0] = p[1]
-    #out.write(p[1]+"\n")
 
 def p_Comando_Declaracao(p):
     "Comando : Declaracao"
@@ -44,154 +40,279 @@ def p_Comando_Atribuicao(p):
     "Comando : Atribuicao"
     p[0] = p[1] 
 
+def p_Comando_Atribuicao_NEWLINE(p):
+    "Comando : Atribuicao NEWLINE"
+    p[0] = p[1]     
+
 def p_Comando_IFELSE(p):
     "Comando : IFELSE"
-    p[0] = p[1]   
+    p[0] = p[1] 
 
-##############################################################
+def p_Comando_ONLYIF(p):
+    "Comando : ONLYIF"
+    p[0] = p[1]     
+
+def p_Comando_FORDO(p):
+    "Comando : FORDO"
+    p[0] = p[1]  
+
+def p_Comando_FUNC(p):
+    "Comando : FUNC"
+    p[0] = p[1] 
+
+def p_Comando_PRINTER(p):
+    "Comando : PRINTER"
+    p[0] = p[1] 
+
+def p_Comando_SCANNER(p):
+    "Comando : SCANNER"
+    p[0] = p[1]                   
+
+##############################################################################
 
 def p_Factor_num(p):
     "Factor : num"
-    p[0] = p[1]
-    print(p[0])
-    out.write("PUSHI " + p[0] + "\n")
+    p[0] = "PUSHI " + p[1] + "\n"
 
 def p_Factor_num_negativo(p):
     "Factor : '-' num"
-    p[0] = (int(p[2])*(-1)) 
-    print(p[0]) 
-    out.write("PUSHI " + p[0] + "\n")
+    p[0] = "PUSHI " + str((int(p[2])*(-1))) + "\n" 
 
 def p_Factor_id(p):
     "Factor : id"
-    p[0] = p[1]
-    #print(atribs)
-    out.write("PUSHG " + str(atribs[p[1]]) + "\n")
-    #p[0] = p.parser.registers.get(p[1])
+    p[0] = "PUSHG " + str(atribs[p[1]]) + "\n"
 
 def p_Factor_TRUE(p):
     "Factor : TRUE"
-    p[0] = p[1]
-    out.write("PUSHI " + "1" + "\n")
+    p[0] = "PUSHI 1\n"
 
 def p_Factor_FALSE(p):
     "Factor : FALSE"
-    p[0] = p[1]  
-    out.write("PUSHI " + "0" + "\n")
+    p[0] = "PUSHI 0\n"  
 
 def p_Factor_ExprR(p):
     "Factor : '(' ExprR ')'"
     p[0] = p[2]      
-    print(p[0])   
 
 def p_ExprR_Expr_menor(p):
     "ExprR : Expr '<' Expr"
-    if(p[1] < p[3]): 
-        p[0] = print("TRUE")
-        out.write("PUSHI 0\n")
-    else: 
-        p[0] = print("FALSE")
-        out.write("PUSHI 1\n")
+    p[0] = p[1] + p[3] + "INF\n"
 
 def p_ExprR_Expr_maior(p):
     "ExprR : Expr '>' Expr"
-    if(p[1] > p[3]): 
-        p[0] = print("TRUE")
-        out.write("PUSHI 0\n")
-    else: 
-        p[0] = print("FALSE") 
-        out.write("PUSHI 1\n")
+    p[0] = p[1] + p[3] + "SUP\n"
+
+def p_ExprR_Expr_menor_igual(p):
+    "ExprR : Expr '<' '=' Expr"
+    p[0] = p[1] + p[4] + "INFEQ\n"
+
+def p_ExprR_Expr_maior_igual(p):
+    "ExprR : Expr '>' '=' Expr"
+    p[0] = p[1] + p[4] + "SUPEQ\n"    
 
 def p_ExprR_Expr_igual(p):
     "ExprR : Expr EQUALS Expr"
-    #p[0] = p[1] +"=="+ p[3]
-    #out.write(p[1] + " " + p[3]+ " " + "EQUAL\n")
-    out.write("\nEQUAL\n")
+    p[0] = p[1] + p[3] + "EQUAL\n"
 
 def p_ExprR_Expr_diferente(p):
     "ExprR : Expr NOTEQUALS Expr"
-    #out.write(p[1] + "\n"+ p[3] + "\nEQUAL NOT\n") 
-    out.write("\nEQUAL NOT\n")         
+    p[0] = p[1] + p[3] + "EQUAL NOT\n"
+
+# 1 E 1 = 1
+# 1 E 0 = 0
+# 0 E 1 = 0
+# 0 E 0 = 0
+def p_Termo_Termo_E_Termo(p):
+    "Termo : Termo E Factor"
+    p[0] = p[1] + p[3] + "MUL\n"
+
+# 1 OU 1 = 1
+# 1 OU 0 = 1
+# 0 OU 1 = 1
+# 0 OU 0 = 0
+def p_ExprR_Expr_OU_Expr(p):
+    "Expr : Expr OU Termo"
+    p[0] = p[1] + "\nNOT\n" + p[3] + "\nNOT\nMUL\n NOT\n"    
 
 def p_ExprR_Expr(p):
     "ExprR : Expr"
-    #out.write(p[1])
     p[0] = p[1]
 
 def p_Expr_Termo(p):
     "Expr : Termo"
     p[0] = p[1]
-    #out.write(p[0])
 
 def p_Expr_Termo_ADD(p):
     "Expr : Expr '+' Termo"
-    p[0] = int(p[1]) + int(p[3])  
-    print(p[0])
-    out.write("ADD \n")           
+    p[0] = p[1]+p[3]+"ADD\n"  
 
 def p_Expr_Termo_SUB(p):
     "Expr : Expr '-' Termo"
-    p[0] = int(p[1]) - int(p[3]) 
-    print(p[0])
-    out.write("SUB \n") 
+    p[0] = p[1]+p[3]+"SUB\n"
+
+def p_Termo_Factor_MUL(p):
+    "Expr : Termo '*' Factor"
+    p[0] = p[1]+p[3]+"MUL\n"
+
+def p_Termo_Factor_DIV(p):
+    "Expr : Termo '/' Factor"
+    erro = "\"erro -> divisão por zero >:(\"\n"
+    print(p[3])
+    p[0] = p[1]+p[3]+ "JZ IF0\n"+ "DIV\n" + "IF0:\n" + "ERR " + erro + "\n" 
 
 def p_Termo_Factor(p):
     "Termo : Factor"
     p[0] = p[1]
-    #out.write(p[1])
 
-def p_Declaracao(p):
+def p_Declaracao_INT(p):
     "Declaracao : INT id"
-    p[0] = p[2]
+    p[0] = "PUSHI 0\n"
     global atribs
     global atrib_counter
     atribs[p[2]] = atrib_counter
     atrib_counter+=1
-    out.write("PUSHI 0\n")
-    #print(atribs)
 
-def p_Atribuicao(p):
+def p_Atribuicao_INT(p):
     "Atribuicao : id '=' ExprR"
     global atribs
-    p[0] = p[1]
-    print("p[3]: ",str(p[3]))
-    out.write("STOREG "+str(atribs[p[1]])+"\n")
+    p[0] = p[3] + "STOREG " + str(atribs[p[1]]) + "\n"
+    return p[1]
+
+'''
+def p_Declaracao_STRING(p):
+    "Declaracao : STRING id"
+    p[0] = "PUSHS " +"\n"
+    global atribs
+    global atrib_counter
+    atribs[p[2]] = atrib_counter
+    atrib_counter+=1    
+
+def p_Atribuicao_STRING(p):
+    "Atribuicao : id '=' TEXT"
+    global atribs
+    p[0] = "PUSHS "+ p[3] + "\nSTOREG " + str(atribs[p[1]]) + "\n"
+    return p[1]    
+'''
 
 def p_Atribuicoes_Atribuicao(p):
     "Atribuicoes : Atribuicao"
     p[0] = p[1]
-    #out.write("STOREG "+str(atribs[a])+"\n")
 
+def p_Atribuicoes_Atribuicao_NEWLINE(p):
+    "Atribuicoes : Atribuicao NEWLINE"
+    p[0] = p[1]
+
+# atribs : atribs atrib
 def p_Atribuicoes_Atribuicao_Varias(p):
     "Atribuicoes : Atribuicoes Atribuicao"
+    p[0] = p[1] + p[2]
+
+def p_Atribuicoes_Atribuicao_Varias_NEWLINE(p):
+    "Atribuicoes : Atribuicoes NEWLINE Atribuicao"
+    p[0] = p[1] + p[2]
+
+'''
+Atribuicoes : Atribuicao
+            : Atribuicoes Atribuicao  
+
+ Atribuicao : id = Expr
+
+Operacoes : Atribuicoes
+          : IFELSE
+
+FOR (ExprR) {a=2 IFELSE}
+
+FOR (ExprR)  {Operacoes}   
+'''
+
+def p_Atribuicao_IFELSE(p):
+    "Atribuicoes : IFELSE"
     p[0] = p[1]
-    #out.write(p[1]+ "\n" + p[2] + "\n")
+
+def p_Atribuicao_ONLYIF(p):
+    "Atribuicao : ONLYIF"
+    p[0] = p[1]    
+
+def p_Atribuicao_FORDO(p):
+    "Atribuicao : FORDO"
+    p[0] = p[1]
+
+def p_Atribuicao_PRINT(p):
+    "Atribuicao : PRINTER"
+    p[0] = p[1]
+
+def p_Atribuicao_SCAN(p):
+    "Atribuicao : SCANNER"
+    p[0] = p[1]
 
 
 def p_IF_ELSE(p):
     "IFELSE : IF '(' ExprR ')' '{' Atribuicoes '}' ELSE '{' Atribuicoes '}'"
-    #out.write(p[3]+ "\n" + "JZ IF0\n" + p[6] + "IF0:\n")
-    #print("p[3]: ",p[3])
-    #print("p[6]: ",p[6])
+    p[0] = p[3]+ "\n" + "JZ IF0\n" + p[6] + "\nJUMP END\n"+ "\nIF0:\n" + p[10]+ "\nEND:\n"
 
-    '''if(p[3] == 'TRUE'): 
-        out.write("p[6]\n") 
-    else: 
-        out.write("p[10]\n") 
-    '''
-def p_JZIF0(p):
-    "JZIF0 : JUMP"
-    out.write("JZ IF0\n")
+def p_IF(p): 
+    "ONLYIF : IF '(' ExprR ')' '{' Atribuicoes '}'"
+    p[0] = p[3]+ "\n" + "JZ IF0\n" + p[6] + "\nIF0:\n"
 
-
-def p_IFELSE(p): 
-    "IFELSE : IF '(' ExprR ')' JUMP '{' Atribuicoes '}'"
-    #print("ExprR: ",p[3])
-    #print("Atrib: ",p[6]) 
-
-    #out.write(p[3]+ "\n" + "JZ IF0\n" + p[6] + "\nIF0:\n")
+def p_FORDO(p): 
+    "FORDO : FOR '(' Atribuicao ',' ExprR ')' DO '{' Atribuicoes '}'"
+    global atribs
+    a = p[3][-2]
+    p[0] = p[3]+ "FOR:\n"+ "\n" + p[5]+ "\n" + "JZ IF \n" + p[9] + "PUSHG "+ a +"\nPUSHI 1\nADD\nSTOREG " + a +"\n" + "JUMP FOR\n" + "\nIF:\n"
 
 
+def p_ARGS(p):
+    "ARGS : ARG"
+    p[0] = p[1]
+
+def p_ARG_0(p):
+    "ARG : "
+    #p[0] = p[1]
+
+def p_ARG_1(p):
+    "ARG : id"
+    p[0] = p[1]
+
+def p_ARG_varios(p):
+    "ARGS : ARGS ',' ARG"   
+    p[0] = p[1] + p[2]    
+
+def p_FUNC(p):
+    "FUNC : NOME '(' ARGS ')' '{' Atribuicoes '}'"
+    p[0] = p[6]
+    print("nome:" + p[1])
+
+def p_FUNC_NEWLINE(p):
+    "FUNC : NOME '(' ARGS ')' '{' NEWLINE Atribuicoes NEWLINE '}'"
+    p[0] = p[7]
+    print("nome:" + p[1])    
+
+
+def p_TEXTO(p):
+    "TEXTO : TEXT" 
+    p[0] = "PUSHS "+p[1]+"\n"+"WRITES\n"     
+
+def p_STRING_PRINTER(p):
+    "PRINTER : PRINT '(' TEXTO ')'"
+    p[0] = p[3]
+
+def p_INT_PRINTER(p):
+    "PRINTER : PRINT '(' id ')'"
+    global atribs
+    p[0] = "PUSHG "+ str(atribs[p[3]]) + "\nWRITEI\n"   
+
+def p_SCANNER(p): 
+    "SCANNER : SCAN '(' id ')'" 
+    global atribs
+    p[0] = "READ "+ "\nSTOREG " +str(atribs[p[3]]) + "\nPUSHG " +str(atribs[p[3]]) + "\nATOI" + "\nSTOREG " +str(atribs[p[3]]) + "\n"
+
+###########################################################################
+#### QUERIES ######
+'''
+def p_QUADRADO(p):
+    "QUADRADO : QUAD '(' ID ',' ID ',' ID ',' ID ')' '{' IFELSE '}'" 
+QUAD(a,b,c,d){IF ((a==b)E(a==c)E(a==d))}
+'''
 
 #error rule for syntax errors
 def p_error(p):
@@ -207,4 +328,4 @@ for linha in file:
     print("Frase válida")
 
 out.write("STOP")
-out.close()    
+out.close()
