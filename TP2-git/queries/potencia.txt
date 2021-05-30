@@ -1,0 +1,14 @@
+INT base
+INT exp
+INT i
+INT res
+DEF _POTENCIA(base,exp,i,res){PRINT("Insira a base :\n") SCAN (base) PRINT("Insira o expoente:\n") SCAN(exp) res=1 FOR(i=0, i<exp)DO{res=res*base } PRINT("Resultado:") PRINT(res)}
+
+
+INT base
+INT exp
+INT i
+INT res
+DEF _POTENCIA(a,b,c,d){PRINT("Insira a base :\n") SCAN (base) PRINT("Insira o expoente:\n") SCAN(exp) res=1 FOR(i=0, i<exp)DO{res=res*base } PRINT("Resultado:") PRINT(res)}
+
+DEF MAIN(){_POTENCIA()}

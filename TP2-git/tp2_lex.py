@@ -1,7 +1,7 @@
 import ply.lex as lex
 
-tokens = ['num', 'id', 'INT', 'TRUE', 'FALSE', 'IF', 'FOR', 'ELSE', 'EQUALS', 'NOTEQUALS', 'DO', 'E', 'OU', 'NOME', 'TEXT', 'PRINT', 'SCAN', 'STRING', 'NEWLINE']
-literals = ['(', ')', '+', '-', '*', '/', '!', '=', '?', '<', '>', ',', '{', '}', '"']
+tokens = ['num', 'id', 'INT', 'TRUE', 'FALSE', 'IF', 'FOR', 'ELSE', 'EQUALS', 'NOTEQUALS', 'DO', 'E', 'OU', 'NOME', 'TEXT', 'PRINT', 'SCAN', 'STRING', 'NEWLINE','DEF' , 'MAIN']
+literals = ['(', ')', '+', '-', '*', '/', '!', '=', '?', '<', '>', ',', '{', '}', '"', '%']
 
 t_num = r'\d+'
 
@@ -29,7 +29,10 @@ t_E = r'E'
 
 t_OU = r'OU'
 
-t_NOME = r'^((def_)[a-zA-Z]+)'
+t_DEF = r'DEF'
+
+t_NOME = r'\_[a-zA-Z]+'
+#t_NOME = r'^((def_)[a-zA-Z]+)'
 
 #t_TEXT = r'^".+"$'
 t_TEXT = r'"([^"]+)"'
@@ -39,6 +42,8 @@ t_PRINT = r'PRINT'
 t_SCAN = r'SCAN'
 
 t_STRING = r'STRING'
+
+t_MAIN = r'MAIN'
 
 t_NEWLINE = r'\n'
 

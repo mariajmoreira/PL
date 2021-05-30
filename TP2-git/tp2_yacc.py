@@ -3,10 +3,15 @@ from tp2_lex import tokens
 from tp2_lex import literals
 import sys
 
-#Data Structure
+#Data Structure para posições de variaveis na stack
 #key : string (nome da variavel)
 #valor : endereço da stack
 atribs = {}
+
+#Data Structure para guardar o nome e instruçoes de funções prédefinidas
+#key: string (nome da funcao)
+#valor: string com todas as instruçoes maquina da função 
+funcs = {}
 
 #Contador de atribuições
 atrib_counter = 0
@@ -22,11 +27,13 @@ out.write("START\n")
 #Comandos
 def p_Comandos_comando(p):
     "Comandos : Comando"
-    out.write(p[1]+"\n")
+    p[0] = p[1]
+    #out.write(p[1]+"\n")
 
 def p_Comandos_comandos_comando(p):
     "Comandos : Comandos Comando"
-    out.write(p[2]+"\n")
+    #out.write(p[2]+"\n")
+    p[0] = p[1]
 
 def p_Comando_ExprR(p):
     "Comando : ExprR"
@@ -34,39 +41,25 @@ def p_Comando_ExprR(p):
 
 def p_Comando_Declaracao(p):
     "Comando : Declaracao"
-    p[0] = p[1]    
+   # p[0] = p[1] 
+    out.write(p[1]+"\n")    
 
-def p_Comando_Atribuicao(p):
-    "Comando : Atribuicao"
-    p[0] = p[1] 
+def p_Comando_Op(p):
+    "Comando : Operacao"
+    p[0] = p[1]     
 
 def p_Comando_Atribuicao_NEWLINE(p):
     "Comando : Atribuicao NEWLINE"
     p[0] = p[1]     
 
-def p_Comando_IFELSE(p):
-    "Comando : IFELSE"
-    p[0] = p[1] 
-
-def p_Comando_ONLYIF(p):
-    "Comando : ONLYIF"
-    p[0] = p[1]     
-
-def p_Comando_FORDO(p):
-    "Comando : FORDO"
-    p[0] = p[1]  
-
 def p_Comando_FUNC(p):
     "Comando : FUNC"
     p[0] = p[1] 
 
-def p_Comando_PRINTER(p):
-    "Comando : PRINTER"
-    p[0] = p[1] 
-
-def p_Comando_SCANNER(p):
-    "Comando : SCANNER"
-    p[0] = p[1]                   
+def p_Comando_MAIN(p):
+    "Comando : MAINF"
+    #p[0] = p[1] 
+    out.write(p[1]+"\n")    
 
 ##############################################################################
 
@@ -154,10 +147,13 @@ def p_Termo_Factor_MUL(p):
     "Expr : Termo '*' Factor"
     p[0] = p[1]+p[3]+"MUL\n"
 
+def p_Termo_Factor_MOD(p):
+    "Expr : Termo '%' Factor"
+    p[0] = p[1]+p[3]+"MOD\n"    
+
 def p_Termo_Factor_DIV(p):
     "Expr : Termo '/' Factor"
     erro = "\"erro -> divisão por zero >:(\"\n"
-    print(p[3])
     p[0] = p[1]+p[3]+ "JZ IF0\n"+ "DIV\n" + "IF0:\n" + "ERR " + erro + "\n" 
 
 def p_Termo_Factor(p):
@@ -178,84 +174,75 @@ def p_Atribuicao_INT(p):
     p[0] = p[3] + "STOREG " + str(atribs[p[1]]) + "\n"
     return p[1]
 
-'''
-def p_Declaracao_STRING(p):
-    "Declaracao : STRING id"
-    p[0] = "PUSHS " +"\n"
+def p_Atribuicao_FUNC(p):
+    "Atribuicao : id '=' NOME '(' ')'"
+    global funcs
+    a = funcs[p[3]][-2] 
     global atribs
-    global atrib_counter
-    atribs[p[2]] = atrib_counter
-    atrib_counter+=1    
-
-def p_Atribuicao_STRING(p):
-    "Atribuicao : id '=' TEXT"
-    global atribs
-    p[0] = "PUSHS "+ p[3] + "\nSTOREG " + str(atribs[p[1]]) + "\n"
+    p[0] = funcs[p[3]] + "\nPUSHG " + a + "\nSTOREG " + str(atribs[p[1]]) +"\n" 
     return p[1]    
-'''
-
+    
 def p_Atribuicoes_Atribuicao(p):
     "Atribuicoes : Atribuicao"
-    p[0] = p[1]
+    p[0] = p[1] 
 
-def p_Atribuicoes_Atribuicao_NEWLINE(p):
-    "Atribuicoes : Atribuicao NEWLINE"
-    p[0] = p[1]
-
-# atribs : atribs atrib
 def p_Atribuicoes_Atribuicao_Varias(p):
     "Atribuicoes : Atribuicoes Atribuicao"
     p[0] = p[1] + p[2]
 
-def p_Atribuicoes_Atribuicao_Varias_NEWLINE(p):
-    "Atribuicoes : Atribuicoes NEWLINE Atribuicao"
+def p_Operacoes_Operacao(p):
+    "Operacoes : Operacao"
+    p[0] = p[1]
+
+# atribs : atribs atrib
+def p_Operacoes_Operacao_Varias(p):
+    "Operacoes : Operacoes Operacao"
     p[0] = p[1] + p[2]
 
-'''
-Atribuicoes : Atribuicao
-            : Atribuicoes Atribuicao  
+def p_Operacoes_Operacao_Varias_NEWLINE(p):
+    "Operacoes : Operacoes NEWLINE Operacao"
+    p[0] = p[1] + p[3]
 
- Atribuicao : id = Expr
-
-Operacoes : Atribuicoes
-          : IFELSE
-
-FOR (ExprR) {a=2 IFELSE}
-
-FOR (ExprR)  {Operacoes}   
-'''
-
-def p_Atribuicao_IFELSE(p):
-    "Atribuicoes : IFELSE"
-    p[0] = p[1]
-
-def p_Atribuicao_ONLYIF(p):
-    "Atribuicao : ONLYIF"
+def p_Operacao_Atribuicoes(p):
+    "Operacao : Atribuicoes"
     p[0] = p[1]    
 
-def p_Atribuicao_FORDO(p):
-    "Atribuicao : FORDO"
+def p_Operacao_IFELSE(p):
+    "Operacao : IFELSE"
     p[0] = p[1]
 
-def p_Atribuicao_PRINT(p):
-    "Atribuicao : PRINTER"
+def p_Operacao_ONLYIF(p):
+    "Operacao : ONLYIF"
+    p[0] = p[1]    
+
+def p_Operacao_FORDO(p):
+    "Operacao : FORDO"
     p[0] = p[1]
 
-def p_Atribuicao_SCAN(p):
-    "Atribuicao : SCANNER"
+def p_Operacao_PRINT(p):
+    "Operacao : PRINTER"
     p[0] = p[1]
+
+def p_Operacao_SCAN(p):
+    "Operacao : SCANNER"
+    p[0] = p[1]
+
+def p_Operacao_FUNC(p):
+    "Operacao : NOME '(' ')' "
+    global funcs
+    p[0] = funcs[p[1]]   
 
 
 def p_IF_ELSE(p):
-    "IFELSE : IF '(' ExprR ')' '{' Atribuicoes '}' ELSE '{' Atribuicoes '}'"
+    "IFELSE : IF '(' ExprR ')' '{' Operacoes '}' ELSE '{' Operacoes '}'"
     p[0] = p[3]+ "\n" + "JZ IF0\n" + p[6] + "\nJUMP END\n"+ "\nIF0:\n" + p[10]+ "\nEND:\n"
 
 def p_IF(p): 
-    "ONLYIF : IF '(' ExprR ')' '{' Atribuicoes '}'"
+    "ONLYIF : IF '(' ExprR ')' '{' Operacoes '}'"
     p[0] = p[3]+ "\n" + "JZ IF0\n" + p[6] + "\nIF0:\n"
 
 def p_FORDO(p): 
-    "FORDO : FOR '(' Atribuicao ',' ExprR ')' DO '{' Atribuicoes '}'"
+    "FORDO : FOR '(' Operacoes ',' ExprR ')' DO '{' Operacoes '}'"
     global atribs
     a = p[3][-2]
     p[0] = p[3]+ "FOR:\n"+ "\n" + p[5]+ "\n" + "JZ IF \n" + p[9] + "PUSHG "+ a +"\nPUSHI 1\nADD\nSTOREG " + a +"\n" + "JUMP FOR\n" + "\nIF:\n"
@@ -277,16 +264,16 @@ def p_ARG_varios(p):
     "ARGS : ARGS ',' ARG"   
     p[0] = p[1] + p[2]    
 
-def p_FUNC(p):
-    "FUNC : NOME '(' ARGS ')' '{' Atribuicoes '}'"
-    p[0] = p[6]
-    print("nome:" + p[1])
+def p_FUNC(p): 
+    "FUNC : DEF NOME '(' ARGS ')' '{' Operacoes '}'"
+    p[0] = p[7]
+    global funcs
+    funcs[p[2]] = p[7]
 
 def p_FUNC_NEWLINE(p):
-    "FUNC : NOME '(' ARGS ')' '{' NEWLINE Atribuicoes NEWLINE '}'"
+    "FUNC : DEF NOME '(' ARGS ')' '{' NEWLINE Operacoes NEWLINE '}'"
     p[0] = p[7]
     print("nome:" + p[1])    
-
 
 def p_TEXTO(p):
     "TEXTO : TEXT" 
@@ -306,13 +293,9 @@ def p_SCANNER(p):
     global atribs
     p[0] = "READ "+ "\nSTOREG " +str(atribs[p[3]]) + "\nPUSHG " +str(atribs[p[3]]) + "\nATOI" + "\nSTOREG " +str(atribs[p[3]]) + "\n"
 
-###########################################################################
-#### QUERIES ######
-'''
-def p_QUADRADO(p):
-    "QUADRADO : QUAD '(' ID ',' ID ',' ID ',' ID ')' '{' IFELSE '}'" 
-QUAD(a,b,c,d){IF ((a==b)E(a==c)E(a==d))}
-'''
+def p_MAIN(p):
+    "MAINF : DEF MAIN '(' ')' '{' Operacoes '}' "
+    p[0] = p[6]
 
 #error rule for syntax errors
 def p_error(p):

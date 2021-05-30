@@ -17,3 +17,12 @@ INT num
 INT menor
 INT i 
 def_MENOR(n,num,menor,i){ PRINT("Quantos numeros pretende ler?\n") SCAN (n) PRINT("Insira um numero:\n") SCAN(num) menor = num FOR (i=1, i<n) DO { PRINT("Insira um numero:\n") SCAN(num) IF (num<menor) {menor=num} } PRINT("Menor numero: ") PRINT(menor) }
+
+
+INT n
+INT num
+INT menor
+INT i 
+DEF _MENOR(n,num,menor,i){ PRINT("Quantos numeros pretende ler?\n") SCAN (n) PRINT("Insira um numero:\n") SCAN(num) menor = num FOR (i=1, i<n) DO { PRINT("Insira um numero:\n") SCAN(num) IF (num<menor) {menor=num} } PRINT("Menor numero: ") PRINT(menor) }
+
+DEF MAIN(){_MENOR()}

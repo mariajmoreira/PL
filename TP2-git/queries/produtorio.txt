@@ -1,4 +1,13 @@
+Produtorio que calcula: input^input 
+
 INT n 
 INT i
 INT res
-def_PROD(n) {PRINT("Calcular produtorio de: ") SCAN(n) res=n FOR(i=1, i<=n) DO { res=n*res i=i+1} PRINT("Resultado: ") PRINT(res) }
+def_PROD(n) {PRINT("Calcular produtorio de: ") SCAN(n) res=n FOR(i=1, i<n) DO { res=n*res} PRINT("Resultado: ") PRINT(res) }
+
+INT n 
+INT i
+INT res
+DEF _PROD(n) {PRINT("Calcular produtorio de: ") SCAN(n) res=n FOR(i=1, i<n) DO { res=n*res} PRINT("Resultado: ") PRINT(res) }
+
+DEF MAIN(){_PROD()}

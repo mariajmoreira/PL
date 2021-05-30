@@ -1,0 +1,14 @@
+INT n 
+INT i
+INT num
+INT mod
+def_IMPAR(n) { PRINT("Insira a quantidade de numeros da sequencia: ") SCAN(n) FOR(i=0, i<n) DO { PRINT("Insira um numero: ") SCAN(num) mod=num%2 IF(mod==1){PRINT("numero primo: ") PRINT(num) PRINT("\n") } } }
+
+
+INT n 
+INT i
+INT num
+INT mod
+DEF _IMPAR(n) { PRINT("Insira a quantidade de numeros da sequencia: ") SCAN(n) FOR(i=0, i<n) DO { PRINT("Insira um numero: ") SCAN(num) mod=num%2 IF(mod==1){PRINT("numero primo: ") PRINT(num) PRINT("\n") } } }
+
+DEF MAIN(){_IMPAR()}

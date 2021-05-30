@@ -1,4 +1,28 @@
-INT n 
-INT i
+INT n
+INT num
+INT menor
+INT i 
+INT mod
+INT base
+INT exp
 INT res
-def_PROD(n) {PRINT("Calcular produtorio de: ") SCAN(n) res=n FOR(i=1, i<=n) DO { res=n*res i=i+1} PRINT("Resultado: ") PRINT(res) }
+INT a
+INT b
+INT c
+INT d
+
+DEF _MENOR(n,num,menor,i){ PRINT("Quantos numeros pretende ler?\n") SCAN (n) PRINT("Insira um numero:\n") SCAN(num) menor = num FOR (i=1, i<n) DO { PRINT("Insira um numero:\n") SCAN(num) IF (num<menor) {menor=num} } PRINT("Menor numero: ") PRINT(menor) }
+
+
+DEF _IMPAR(n) { PRINT("Insira a quantidade de numeros da sequencia: ") SCAN(n) FOR(i=0, i<n) DO { PRINT("Insira um numero: ") SCAN(num) mod=num%2 IF(mod==1){PRINT("numero primo: ") PRINT(num) PRINT("\n") } } }
+
+
+DEF _POTENCIA(a,b,c,d){PRINT("Insira a base :\n") SCAN (base) PRINT("Insira o expoente:\n") SCAN(exp) res=1 FOR(i=0, i<exp)DO{res=res*base } PRINT("Resultado:") PRINT(res)}
+
+
+DEF _PROD(n) {PRINT("Calcular produtorio de: ") SCAN(n) res=n FOR(i=1, i<n) DO { res=n*res} PRINT("Resultado: ") PRINT(res) }
+
+
+DEF _QUAD(a,b,c,d){PRINT("Insira o primeiro lado:\n") SCAN (a) PRINT("Insira o segundo lado:\n") SCAN(b) PRINT("Insira o terceiro lado:\n") SCAN(c) PRINT("Insira o quarto lado:\n") SCAN(d) IF((a==b)E(a==c)E(a==d)){PRINT( "quadrado valido\n")} ELSE {PRINT( "quadrado invalido\n") }}
+
+DEF MAIN(){_MENOR() _IMPAR()}

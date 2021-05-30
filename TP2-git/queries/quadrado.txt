@@ -2,11 +2,24 @@ INT a
 INT b
 INT c
 INT d
-INT res
 a=2
 b=2
 c=2
 d=2
-def_QUAD(a,b,c,d){ IF( (a==b)E(a==c)E(a==d) ) {PRINT( "quadrado valido\n")} ELSE{ PRINT("quadrado invalido\n")} }
+def_QUAD(a,b,c,d) { IF( (a==b)E(a==c)E(a==d) ) {PRINT( "quadrado valido\n")} ELSE{ PRINT("quadrado invalido\n")} }
 
 
+INT a
+INT b
+INT c
+INT d
+def_QUAD(a,b,c,d){PRINT("Insira o primeiro lado:\n") SCAN (a) PRINT("Insira o segundo lado:\n") SCAN(b) PRINT("Insira o terceiro lado:\n") SCAN(c) PRINT("Insira o quarto lado:\n") SCAN(d) IF((a==b)E(a==c)E(a==d)){PRINT( "quadrado valido\n")} ELSE {PRINT( "quadrado invalido\n") }}
+
+
+INT a
+INT b
+INT c
+INT d
+DEF _QUAD(a,b,c,d){PRINT("Insira o primeiro lado:\n") SCAN (a) PRINT("Insira o segundo lado:\n") SCAN(b) PRINT("Insira o terceiro lado:\n") SCAN(c) PRINT("Insira o quarto lado:\n") SCAN(d) IF((a==b)E(a==c)E(a==d)){PRINT( "quadrado valido\n")} ELSE {PRINT( "quadrado invalido\n") }}
+
+DEF MAIN(){_QUAD()}

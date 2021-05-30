@@ -1,0 +1,6 @@
+INT i
+INT res
+
+DEF _SOMA(){i=2+3}
+
+DEF MAIN(){res=_SOMA()  PRINT("resultado: ") PRINT(res)}
